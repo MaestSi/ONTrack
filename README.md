@@ -65,6 +65,8 @@ Outputs (saved in \<fast5_dir\>_analysis/analysis):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
 * \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if do_Blast is set to 1 in config_MinION_mobile_lab.R)
 
+## Ausiliary scripts
+
 In the following, ausiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
 
 **MinION_mobile_lab.R**
