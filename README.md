@@ -79,7 +79,7 @@ Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
 
 ## Auxiliary scripts
 
-In the following, ausiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
+In the following, auxiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
 
 **MinION_mobile_lab.R**
 
