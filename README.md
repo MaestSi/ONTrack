@@ -1,6 +1,6 @@
 ## ONTrack
 
-ONTrack is a MinION-based pipeline for tracking species biodiversity in barcoding projects; starting from fastq and fasta files, the ONTrack pipeline is able to provide accurate (>99.9% accuracy) consensus sequences in ~20 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
+ONTrack is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from fastq and fasta files containing MinION sequencing reads, the ONTrack pipeline is able to provide accurate (>99.9% accuracy) consensus sequences in ~20 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
 
 ## Getting started
 
@@ -26,6 +26,7 @@ cd ONTrack
 ./install.sh
 ```
 
+A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish and pycoQC are installed.
 Then, you can open the **config_MinION_mobile_lab.R** file with a text editor and set the variables _PIPELINE_DIR_ and _MINICONDA_DIR_ to the value suggested by the installation step.
 
 ## Usage
@@ -39,7 +40,7 @@ Otherwise, you can run the pipeline using the **launch_MinION_mobile_lab.sh** sc
 
 Usage: Rscript ONTrack.R \<home_dir\> \<fast5_dir\> \<sequencing_summary.txt\>
 
-Note: script run by MinION_mobile_lab.R, but can be also run as a main script if you have already basecalled and demultiplexed your sequences.
+Note: Activate the virtual environment with ```source activate ONTrack_env``` before running. The script is run by **MinION_mobile_lab.R**, but can be also run as a main script if you have already basecalled and demultiplexed your sequences.
 
 Inputs:
 * \<home_dir\>: directory containing fastq and fasta files for each sample
@@ -48,7 +49,7 @@ Inputs:
 
 Outputs (saved in <home_dir>):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if doBlast flag is set to 1 in config_MinION_mobile_lab.R)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if doBlast flag is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
 **launch_MinION_mobile_lab.sh**
@@ -56,14 +57,24 @@ Outputs (saved in <home_dir>):
 Usage:
 launch_MinION_mobile_lab.sh \<fast5_dir\>
 
-Note: modify config_MinION_mobile_lab.R before running; the script runs the full pipeline from fast5 files to consensus sequences.
+Note: modify **config_MinION_mobile_lab.R** before running; the script runs the full pipeline from raw fast5 files to consensus sequences.
 
 Input
 * \<fast5_dir\>: directory containing raw fast5 files
 
 Outputs (saved in \<fast5_dir\>_analysis/analysis):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if do_Blast is set to 1 in config_MinION_mobile_lab.R)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if do_Blast is set to 1 in **config_MinION_mobile_lab.R**)
+* \<"sample_name"\>: directory including intermediate files
+
+Outputs (saved in \<fast5_dir\>_analysis/qc):
+* Read length distributions and pycoQC report
+
+Outputs (saved in \<fast5_dir\>_analysis/basecalling):
+* Temporary files for basecalling
+
+Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
+* Temporary files for demultiplexing, filtering based on read length and adapters trimming
 
 ## Ausiliary scripts
 
