@@ -23,6 +23,7 @@ Tested with conda 4.6.11.
 ```
 git clone https://github.com/MaestSi/ONTrack.git
 cd ONTrack
+chmod 755 *
 ./install.sh
 ```
 
