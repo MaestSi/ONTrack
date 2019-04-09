@@ -77,7 +77,7 @@ Outputs (saved in \<fast5_dir\>_analysis/basecalling):
 Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
 * Temporary files for demultiplexing, filtering based on read length and adapters trimming
 
-## Ausiliary scripts
+## Auxiliary scripts
 
 In the following, ausiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
 
