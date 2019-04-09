@@ -21,7 +21,7 @@ Tested with conda 4.6.11.
 **Installation**
 
 ```
-git clone
+git clone https://github.com/MaestSi/ONTrack.git
 cd ONTrack
 ./install.sh
 ```
