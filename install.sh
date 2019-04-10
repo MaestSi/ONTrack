@@ -23,7 +23,7 @@ PIPELINE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MINICONDA_DIR=$(which conda | sed 's/bin.*$//')
 conda config --add channels bioconda
 conda config --add channels conda-forge
-conda create -n ONTrack_env python=3.6 blast emboss vsearch seqtk mafft porechop minimap2 samtools nanopolish=0.11.1
+conda create -n ONTrack_env python=3.6 blast emboss vsearch seqtk mafft porechop minimap2 samtools nanopolish
 source activate ONTrack_env
 pip install pycoQC
 echo "Modify variables PIPELINE_DIR and MINICONDA_DIR in config_MinION_mobile_lab.R"
