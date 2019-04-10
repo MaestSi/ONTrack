@@ -99,15 +99,4 @@ Note: script run by MinION_mobile_lab.R for removing reads shorter than mean - 2
 
 **DecONT.sh**
 
-Usage: DecONT.sh \<reads.fasta\> \<VSEARCH\> \<SEQTK\>
-
-Note: script run by ONTrack.R; also fastq reads must be present in the same directory.
-
-Inputs:
-* \<reads.fasta\>: MinION reads in fasta format
-* \<VSEARCH\>: path to VSEARCH executable
-* \<SEQTK\>: path to SEQTK executable
-
-Outputs:
-* \<reads_decont.fasta\>: reads in most abundant cluster in fasta format
-* \<reads_decont.fastq\>: reads in most abundant cluster in fastq format
+Note: script run by ONTrack.R for clustering reads at 70% identity and keeping only reads in most abundant cluster.
