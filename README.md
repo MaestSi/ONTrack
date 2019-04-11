@@ -6,17 +6,58 @@ ONTrack is a rapid and accurate MinION-based pipeline for tracking species biodi
 
 **Prerequisites**
 
+* Miniconda3.
+Tested with conda 4.6.11.
+```which conda``` should return the path to the executable.
+If you don't have Miniconda3 installed, you could download and install it with:
+```
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod 755 Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+```
+
+Then, after completing installation, set the _MINICONDA_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to miniconda3 directory.
+
 * Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3.7.
+If you don't have Guppy installed, go to https://community.nanoporetech.com/downloads, choose an appropriate version and install it.
+For example, if you want to download Guppy v2.3.7 for Linux 64 bit, you could download it with:
+```
+wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_2.3.7_linux64.tar.gz
+tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
+```
+A directory ont-guppy-cpu should have been created in your current directory.
+Then, after completing installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to ont-guppy-cpu directory.
 
 * R with package Biostrings installed and Rscript available in your path.
 Tested with R version 3.2.2 (2015-08-14) and Biostrings version 2.38.4.
 ```which R``` and ```which Rscript``` should return the path to the executables.
 
-* Miniconda3.
-Tested with conda 4.6.11.
-```which conda``` should return the path to the executable.
+If you don't have R already installed, you could download it with:
+```
+conda install -c r r
+```
+Biostrings package could be installed with:
+```
+R
+source("http://bioconductor.org/biocLite.R")
+biocLite("Biostrings")
+```
 
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
+
+For downloading the database:
+
+```
+mkdir NCBI_nt_db
+cd NCBI_nt_db
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*
+wd=$(realpath $(pwd))
+targz_files=$(find $wd | grep .tar.gz$ | sed 's/\.\///g')
+for f in $targz_files; do tar -xzvf $f; done
+rm $targz_files
+```
+
+Then, after completing the Installation, set the _NTDB_ variable in **config_MinION_mobile_lab.R** to the full path to NCBI_nt_db/nt
 
 **Installation**
 
