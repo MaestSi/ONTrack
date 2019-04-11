@@ -20,7 +20,7 @@ Then, after completing installation, set the _MINICONDA_DIR_ variable in **confi
 
 * Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3.7.
 If you don't have Guppy installed, go to https://community.nanoporetech.com/downloads, choose an appropriate version and install it.
-For example, if you want to download Guppy v2.3.7 for Linux 64 bit, you could download it with:
+For example, if you want to download Guppy v2.3.7 for Linux 64 bit, you could download and unpack the archive with:
 ```
 wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_2.3.7_linux64.tar.gz
 tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
