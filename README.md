@@ -51,8 +51,7 @@ For downloading the database:
 mkdir NCBI_nt_db
 cd NCBI_nt_db
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*
-wd=$(realpath $(pwd))
-targz_files=$(find $wd | grep .tar.gz$ | sed 's/\.\///g')
+targz_files=$(find . | grep \.tar\.gz$ | sed 's/\.\///g')
 for f in $targz_files; do tar -xzvf $f; done
 rm $targz_files
 ```
