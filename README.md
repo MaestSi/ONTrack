@@ -25,8 +25,8 @@ For example, if you want to download Guppy v2.3.7 for Linux 64 bit, you could do
 wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_2.3.7_linux64.tar.gz
 tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
 ```
-A directory ont-guppy-cpu should have been created in your current directory.
-Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to ont-guppy-cpu directory.
+A directory _ont-guppy-cpu_ should have been created in your current directory.
+Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to _ont-guppy-cpu_ directory.
 
 * R with package Biostrings installed and Rscript available in your path.
 Tested with R version 3.2.2 (2015-08-14) and Biostrings version 2.38.4.
