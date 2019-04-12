@@ -123,20 +123,20 @@ In the following, auxiliary scripts run either by **ONTrack.R** or by **launch_M
 
 **MinION_mobile_lab.R**
 
-Note: script run by launch_MinION_mobile_lab.sh
+Note: script run by _launch_MinION_mobile_lab.sh_.
 
 **config_MinION_mobile_lab.R**
 
-Note: configuration script, must be modified before running launch_MinION_mobile_lab.sh or ONTrack.R.
+Note: configuration script, must be modified before running _launch_MinION_mobile_lab.sh_ or _ONTrack.R_.
 
 **subsample_fast5.sh**
 
-Note: script run by MinION_mobile_lab.R if do_subsampling_flag is set to 1 in config_MinION_mobile_lab.R.
+Note: script run by _MinION_mobile_lab.R_ if _do_subsampling_flag_ variable is set to 1 in _config_MinION_mobile_lab.R_.
 
 **remove_long_short.pl**
 
-Note: script run by MinION_mobile_lab.R for removing reads shorter than mean - 2\*sd and longer than mean + 2\*sd.
+Note: script run by _MinION_mobile_lab.R_ for removing reads shorter than mean - 2\*sd and longer than mean + 2\*sd.
 
 **DecONT.sh**
 
-Note: script run by ONTrack.R for clustering reads at 70% identity and keeping only reads in most abundant cluster.
+Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in most abundant cluster.
