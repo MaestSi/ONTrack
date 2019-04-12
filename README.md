@@ -32,7 +32,7 @@ Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable
 Tested with R version 3.2.2 (2015-08-14) and Biostrings version 2.38.4.
 ```which R``` and ```which Rscript``` should return the path to the executables.
 
-If you don't have R already installed, you could download it with:
+If you don't have R already installed, you could download and install it with:
 ```
 conda install -c r r
 ```
