@@ -90,7 +90,7 @@ Inputs:
 
 Outputs (saved in <home_dir>):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if doBlast flag is set to 1 in **config_MinION_mobile_lab.R**)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _doBlast_ variable is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
 **launch_MinION_mobile_lab.sh**
