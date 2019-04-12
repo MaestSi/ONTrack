@@ -139,4 +139,4 @@ Note: script run by _MinION_mobile_lab.R_ for removing reads shorter than mean -
 
 **DecONT.sh**
 
-Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in most abundant cluster.
+Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in the most abundant cluster.
