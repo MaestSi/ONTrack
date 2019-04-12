@@ -16,7 +16,7 @@ chmod 755 Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Then, after completing installation, set the _MINICONDA_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to miniconda3 directory.
+Then, after completing _ONTrack_ installation, set the _MINICONDA_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to miniconda3 directory.
 
 * Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3.7.
 If you don't have Guppy installed, go to https://community.nanoporetech.com/downloads, choose an appropriate version and install it.
@@ -26,7 +26,7 @@ wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_2.3.7_l
 tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
 ```
 A directory ont-guppy-cpu should have been created in your current directory.
-Then, after completing installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to ont-guppy-cpu directory.
+Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to ont-guppy-cpu directory.
 
 * R with package Biostrings installed and Rscript available in your path.
 Tested with R version 3.2.2 (2015-08-14) and Biostrings version 2.38.4.
@@ -57,7 +57,7 @@ for f in $targz_files; do tar -xzvf $f; done
 rm $targz_files
 ```
 
-Then, after completing the Installation, set the _NTDB_ variable in **config_MinION_mobile_lab.R** to the full path to NCBI_nt_db/nt
+Then, after completing the _ONTrack_ installation, set the _NTDB_ variable in **config_MinION_mobile_lab.R** to the full path to NCBI_nt_db/nt
 
 **Installation**
 
