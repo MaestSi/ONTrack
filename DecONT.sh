@@ -24,7 +24,7 @@ SEQTK=$3
 
 sample_id=$(echo $(basename $FASTA) | sed 's/\.fasta//')
 wdir=$(realpath $(dirname $FASTA))
-prefix=$wdir"/"$sample_id"_clusters_70perc_"
+prefix=$wdir"/"$sample_id"_cluster_"
 prefix_bn=$(basename $prefix)
 $VSEARCH --cluster_fast $FASTA --id 0.7 --iddef 2 --clusterout_sort --fasta_width 0 --strand both --sizeout --consout $wdir"/consensus_"$sample_id".fasta" --clusters $prefix
 centroid_mac=$(head -n1 $wdir"/consensus_"$sample_id".fasta")
@@ -37,7 +37,7 @@ do
   cat $prefix$i | grep $id_centroid && mac_file=$prefix$i && break
 done
 
-cat $mac_file | grep "^>" | sed 's/^>//' > $wdir"/"$sample_id"_ids_mac.txt"
+cat $mac_file | grep "^>" | sed 's/^>//' | sed 's/\;.*$//' > $wdir"/"$sample_id"_ids_mac.txt"
 
 $SEQTK subseq $wdir"/"$sample_id".fasta" $wdir"/"$sample_id"_ids_mac.txt" > $wdir"/"$sample_id"_decont.fasta"
 $SEQTK subseq $(realpath $wdir"/"$sample_id".fastq") $wdir"/"$sample_id"_ids_mac.txt" > $wdir"/"$sample_id"_decont.fastq"
