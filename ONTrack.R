@@ -103,6 +103,9 @@ for (i in 1:length(fasta_files)) {
   decont_fastq <- paste0(sample_dir, "/", sample_name, "_decont.fastq")
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fasta ", sample_dir))
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fastq ", sample_dir))
+  if (file.info(decont_fasta)$size == 0) {
+    next
+  }
   target_reads_contig <- 200
   plurality_value <- 0.15*target_reads_contig
   target_reads_polishing <- 200
