@@ -35,7 +35,7 @@ done
 
 results_files=$(realpath $(find $CONTIGS_DIR -maxdepth 1 | grep "results_BC"))
 report_file=$CONTIGS_DIR"/Sanger_check_report.txt"
-echo "" > $report_file
+echo "***************************" > $report_file
 
 for rf in $results_files
 do
