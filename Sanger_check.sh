@@ -41,7 +41,7 @@ for rf in $results_files
 do
   echo $(basename $rf) >> $report_file
   cat $rf | grep "Identities" >> $report_file
-  num_unc=$(cat $rf | grep "Sbjct" | sed 's/Sbjct//g' | grep -P "N|B|D|H|K|M|R|S|V|W|Y" -o -c)
+  num_unc=$(cat $rf | grep "Sbjct" | sed 's/Sbjct//g' | grep -P "N|B|D|H|K|M|R|S|V|W|Y" -o | grep -P "N|B|D|H|K|M|R|S|V|W|Y" -c)
   echo "Number of uncertain nucleotides in Sanger sequence: $num_unc" >> $report_file
   echo "***************************"  >> $report_file
 done
