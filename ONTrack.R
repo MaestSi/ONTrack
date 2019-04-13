@@ -108,7 +108,7 @@ for (i in 1:length(fasta_files)) {
   plurality_value <- 0.15*target_reads_contig
   target_reads_polishing <- 200
   
-  if (system(paste0("cat ", file, " | grep \"^>\" | wc -l"), intern=TRUE) < target_reads_contig) {
+  if (system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l"), intern=TRUE) < target_reads_contig) {
     next
   }
 
