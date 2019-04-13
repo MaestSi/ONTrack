@@ -48,7 +48,7 @@ flip_flop_flag <- 0
 #doBlast flag (if equal to 1, blast consensus sequence against NCBI nt database)
 doBlast <- 1
 ########################################################################################################
-PIPELINE_DIR <- "/home/simone/MinION/MinION_scripts/mobile_laboratory_autosetup"
+PIPELINE_DIR <- "/home/simone/MinION/MinION_scripts/mobile_laboratory_autosetup/ONTrack"
 #MINICONDA DIR
 MINICONDA_DIR <- "/home/simone/miniconda3"
 #basecaller_dir (v2.3.7+e041753)
