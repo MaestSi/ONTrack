@@ -105,7 +105,7 @@ Input
 
 Outputs (saved in \<fast5_dir\>_analysis/analysis):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if do_Blast is set to 1 in **config_MinION_mobile_lab.R**)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _do_Blast_ is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
 Outputs (saved in \<fast5_dir\>_analysis/qc):
@@ -140,3 +140,46 @@ Note: script run by _MinION_mobile_lab.R_ for removing reads shorter than mean -
 **DecONT.sh**
 
 Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in the most abundant cluster.
+
+## Checking scripts
+
+**Sanger_check.sh**
+
+Usage: Sanger_check.sh \<contigs dir\> \<sanger dir\>
+
+Note: set _BLASTN_ variable to blastn executable inside the script; sample name should contain the sample id (e.g. BC01)
+
+Inputs:
+* \<contigs dir\>: directory containing files "sample_name".contigs.fasta obtained with the _ONTrack_ pipeline
+* \<sanger dir\>: directory containing fasta files reference_"sample_name".fasta
+
+Output (saved in \<contigs dir\>):
+* <results_"sample_name".txt>: file including alignment of MinION consensus sequence to corresponding Sanger sequence
+* \<report.txt\>: file including overall alignment statistics and number of N nucleotides in Sanger sequences
+
+**Mapping_rate_test.sh**
+
+Usage: Mapping_rate_test.sh \<reads\> \<draft reads\> \<consensus sequence\>
+
+Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executables inside the script
+
+Inputs:
+* \<reads\>: MinION reads in fastq or fasta format
+* \<draft reads\>: MinION reads in fasta format used for creating draft consensus sequence
+* \<consensus sequence\>: polished consensus sequence in fasta format
+
+Output (saved in current directory):
+* \<"sample_name"_report_mapping_rate.txt\>: mapping rate statistics
+
+**Calculate_error_rate.sh**
+
+Usage: Calculate_error_rate.sh \<reads\> \<reference\>
+
+Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executables inside the script
+
+Inputs:
+* \<reads\>:  MinION reads in fastq or fasta format
+* \<reference\>: Sanger sequence corresponding to MinION reads
+
+Outputs:
+* \<"sample_name"_error_rate_stats.txt\>: error rate statistics
