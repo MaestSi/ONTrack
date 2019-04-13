@@ -155,7 +155,7 @@ Inputs:
 
 Output (saved in \<contigs dir\>):
 * <results_"sample_name".txt>: file including alignment of MinION consensus sequence to corresponding Sanger sequence
-* \<report.txt\>: file including overall alignment statistics and number of N nucleotides in Sanger sequences
+* \<Sanger_check_report.txt\>: file including overall alignment statistics and number of uncertain nucleotides in Sanger sequences
 
 **Mapping_rate_test.sh**
 
