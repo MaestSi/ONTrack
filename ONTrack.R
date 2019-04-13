@@ -58,7 +58,6 @@ if (length(args) == 1) {
 PIPELINE_DIR <- dirname(strsplit(commandArgs(trailingOnly = FALSE)[4],"=")[[1]][2])
 
 CONFIG_FILE <- paste0(PIPELINE_DIR, "/config_MinION_mobile_lab.R")
-#CONFIG_FILE <- paste0(PIPELINE_DIR, "/config_ONTrack.R")
 source(CONFIG_FILE)
 
 if (!exists("sequencing_summary")) {
@@ -103,7 +102,7 @@ for (i in 1:length(fasta_files)) {
   decont_fastq <- paste0(sample_dir, "/", sample_name, "_decont.fastq")
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fasta ", sample_dir))
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fastq ", sample_dir))
-  system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l))
+  
   target_reads_contig <- 200
   plurality_value <- 0.15*target_reads_contig
   target_reads_polishing <- 200
