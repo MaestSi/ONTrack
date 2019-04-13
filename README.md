@@ -81,7 +81,7 @@ Otherwise, you can run the pipeline using the **launch_MinION_mobile_lab.sh** sc
 
 Usage: Rscript ONTrack.R \<home_dir\> \<fast5_dir\> \<sequencing_summary.txt\>
 
-Note: Activate the virtual environment with ```source activate ONTrack_env``` before running. The script is run by **MinION_mobile_lab.R**, but can be also run as a main script if you have already basecalled and demultiplexed your sequences.
+Note: Activate the virtual environment with ```source activate ONTrack_env``` before running. The script is run by **MinION_mobile_lab.R**, but can be also run as a main script if you have already basecalled and demultiplexed your sequences. If less than 200 reads are available after contaminants removal, the sample is skipped.
 
 Inputs:
 * \<home_dir\>: directory containing fastq and fasta files for each sample
