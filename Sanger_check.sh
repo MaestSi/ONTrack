@@ -35,14 +35,14 @@ done
 
 results_files=$(realpath $(find $CONTIGS_DIR -maxdepth 1 | grep "results_BC"))
 report_file=$CONTIGS_DIR"/report.txt"
-rm $report_file
+echo "" > $report_file
 
 for rf in $results_files
 do
   echo $(basename $rf) >> $report_file
   cat $rf | grep "Identities" >> $report_file
   echo "Number of uncertain nucleotides in Sanger sequence:" >> $report_file
-  cat $rf | grep "Sbjct" | grep -P "N|B|D|H|K|M|R|S|V|W|Y" -o -c >> $report_file
+  cat $rf | grep "Sbjct" | sed 's/Sbjct//g' | grep -P "N|B|D|H|K|M|R|S|V|W|Y" -o -c >> $report_file
   echo "***************************"  >> $report_file
 done
 
