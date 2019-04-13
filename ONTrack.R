@@ -126,7 +126,8 @@ for (i in 1:length(fasta_files)) {
     system(paste0(SEQTK, " sample -s ", seed_curr , " ", decont_fastq, " ",  target_reads_contig, " > ", draft_reads_fq_curr))
     system(paste0(SEQTK, " seq -A ", draft_reads_fq_curr, " > ", draft_reads_fa_curr))
     mfa_file_curr <- gsub(pattern = "\\.fasta$", replacement = ".mfa", x = draft_reads_fa_curr)
-    system(paste0(MAFFT ,"-linsi --thread ", num_threads, " --threadit 0 --adjustdirectionaccurately ", draft_reads_fa_curr, " > ", mfa_file_curr))
+    #system(paste0(MAFFT ,"-linsi --thread ", num_threads, " --threadit 0 --adjustdirectionaccurately ", draft_reads_fa_curr, " > ", mfa_file_curr)) #threadit 0 if you need reproducible results
+    system(paste0(MAFFT ,"-linsi --thread ", num_threads, " --adjustdirectionaccurately ", draft_reads_fa_curr, " > ", mfa_file_curr))
     system(paste0(CONS, " -sequence ", mfa_file_curr, " -plurality ", plurality_value, " -outseq ", draft_contig_curr_tmp1))
     system(paste0("sed 's/[nN]//g' ", draft_contig_curr_tmp1, " > ", draft_contig_curr_tmp2))
     DNAStringSet_obj <- readDNAStringSet(draft_contig_curr_tmp2, "fasta")

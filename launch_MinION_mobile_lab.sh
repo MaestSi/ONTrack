@@ -19,6 +19,7 @@
 #
 
 RAW_READS_DIR=$1
+RAW_READS_DIR_FULL=$(realpath $RAW_READS_DIR)
 source activate ONTrack_env
 pipeline_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-nohup Rscript $pipeline_dir/MinION_mobile_lab.R $pipeline_dir/config_MinION_mobile_lab.R $RAW_READS_DIR &
+nohup Rscript $pipeline_dir/MinION_mobile_lab.R $pipeline_dir/config_MinION_mobile_lab.R $RAW_READS_DIR_FULL &

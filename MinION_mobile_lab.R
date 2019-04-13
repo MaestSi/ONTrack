@@ -43,6 +43,10 @@ if (!exists("amplicon_length")) {
   amplicon_length <- 710
 }
 
+if (!exists("pair_strands_flag")) {
+  pair_strands_flag <- 0
+}
+
 if (do_subsampling_flag == 1) {
   if (flip_flop_flag == 1) {
     #d2 is the directory which is going to include processed reads
@@ -72,7 +76,7 @@ if (!exists("save_space_flag")) {
   save_space_flag <- 0
 }
 
-if (kit == "SQK-LSK308") {
+if (pair_strands_flag == 1) {
   basecaller <- paste0(BASECALLER_DIR, "/guppy_basecaller")
   basecaller_1d2 <- paste0(BASECALLER_DIR, "/guppy_basecaller_1d2")
 } else {
@@ -152,7 +156,7 @@ if (flip_flop_flag==1) {
   system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads, " --flowcell ", flowcell, " --kit ", kit, " --hp_correct TRUE --fast5_out -s ", d2_basecalling))
 }
 
-if (kit == "SQK-LSK308") {
+if (pair_strands_flag==1) {
   system(paste0(basecaller_1d2, " -r -i ", d2_basecalling, "/workspace --cpu_threads_per_caller ", num_threads, " --config dna_r9.5_450bps_1d2_raw.cfg -f ", d2_basecalling, "/sequencing_summary.txt -s ", d2, "/basecalling_1d2"))
   d2_basecalling <- paste0(d2, "/basecalling_1d2")
 }
