@@ -50,6 +50,7 @@ For downloading the database:
 ```
 mkdir NCBI_nt_db
 cd NCBI_nt_db
+echo `date +%Y-%m-%d` > download_date.txt
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*
 targz_files=$(find . | grep \.tar\.gz$ | sed 's/\.\///g')
 for f in $targz_files; do tar -xzvf $f; done
