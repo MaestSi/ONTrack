@@ -145,13 +145,13 @@ Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping
 
 **Sanger_check.sh**
 
-Usage: Sanger_check.sh \<contigs dir\> \<sanger dir\>
+Usage: Sanger_check.sh \<consensus dir\> \<sanger dir\>
 
 Note: set _BLASTN_ variable to blastn executable inside the script; sample name should contain the sample id (e.g. BC01)
 
 Inputs:
-* \<contigs dir\>: directory containing files "sample_name".contigs.fasta obtained with the _ONTrack_ pipeline
-* \<sanger dir\>: directory containing fasta files reference_"sample_name".fasta
+* \<consensus dir\>: directory containing files "sample_name".contigs.fasta obtained with the _ONTrack_ pipeline
+* \<sanger dir\>: directory containing fasta files reference_"sample_name".fasta obtained with Sanger sequencing
 
 Output (saved in \<contigs dir\>):
 * <results_"sample_name".txt>: file including alignment of MinION consensus sequence to corresponding Sanger sequence
