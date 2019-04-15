@@ -171,7 +171,7 @@ cat(text = "\n")
 
 cat(text = paste0("Demultiplexing started at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing started at ", date()), sep = "\n")
-system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing, " --kit ", kit, " --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\""))
+system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing, " --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\"", " --kit ", kit))
 #system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing))
 cat(text = paste0("Demultiplexing finished at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing finished at ", date()), sep = "\n")
