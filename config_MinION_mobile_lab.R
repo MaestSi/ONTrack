@@ -30,7 +30,7 @@ BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07")
 barcode_kits <- c("EXP-NBD103", "EXP-NBD104", "EXP-NBD114", "EXP-PBC001", "EXP-PBC096", "SQK-16S024", "SQK-LWB001", "SQK-PBK004", "SQK-RAB201", "SQK-RAB204", "SQK-RBK001", "SQK-RBK004", "SQK-RLB001", "SQK-RPB004", "VMK-VMK001")
 #kit (1D/1D^2 reads/rapid 16S)
 kit <- "SQK-LSK108"
-#pair_strands_flag is a variable that controls if 1d2 basecalling has to be performed (if a 1d2 kit has been used) or not
+#pair_strands_flag is a variable that controls, in case a 1d2 kit has been used, if 1d2 basecalling has to be performed (when set equal to 1 ) or not
 pair_strands_flag <- 0
 #flowcell chemistry (R9.4/R9.5 chemistry)
 flowcell <- "FLO-MIN106"
