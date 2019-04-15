@@ -82,6 +82,9 @@ if (!exists("primers_length")) {
   primers_length <- 25
 }
 
+if (!exists("pair_strands_flag")) {
+  pair_strands_flag <- 0
+}
 
 fasta_files <- list.files(path = home_dir, pattern = "BC\\d+\\.fasta", full.names = TRUE)
 fastq_files <- paste0(home_dir, "/", gsub(pattern = "\\.fasta$", replacement = "\\.fastq", x = basename(fasta_files)))
@@ -144,7 +147,7 @@ for (i in 1:length(fasta_files)) {
     names(DNAStringSet_obj_renamed) <- new_headers
     writeXStringSet(x = DNAStringSet_obj_renamed, filepath = draft_contig_curr, format = "fasta", width = 20000)
     system(paste0(SEQTK, " trimfq ", draft_contig_curr, " -b ", primers_length, " -e ", primers_length, " > ", draft_contig_curr_trimmed))
-    if (exists("fast5_dir")) {
+    if (exists("fast5_dir") && pair_strands_flag != 1) {
       qual_filter <- 0
       reads_polishing_fq_curr <- paste0(sample_dir, "/", sample_name, "_polishing_", target_reads_polishing, "_reads_", j, ".fastq")
       reads_polishing_fa_curr <- paste0(sample_dir, "/", sample_name, "_polishing_", target_reads_polishing, "_reads_", j, ".fasta")  
