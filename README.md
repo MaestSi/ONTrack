@@ -1,6 +1,11 @@
+
 ## ONTrack
 
-ONTrack is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from MinION sequencing reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
+**ONTrack** is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from MinION sequencing reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
+
+<p align="center">
+  <img src="Figures/ONTrack_logo.png" alt="drawing" width="350" title="ONTrack_logo">
+</p>
 
 ## Getting started
 
@@ -118,6 +123,14 @@ Outputs (saved in \<fast5_dir\>_analysis/basecalling):
 Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
 * Temporary files for demultiplexing, filtering based on read length and adapters trimming
 
+
+
+<p align="center">
+  <img src="Figures/ONTrack_pipeline_flowchart.png" alt="drawing" width="700" title="ONTrack_pipeline_flowchart">
+</p>
+
+
+
 ## Auxiliary scripts
 
 In the following, auxiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
@@ -184,3 +197,7 @@ Inputs:
 
 Outputs:
 * \<"sample_name"_error_rate_stats.txt\>: error rate statistics
+
+## Citation
+
+If this tool is useful for your work, please consider citing our preprint.
