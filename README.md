@@ -76,6 +76,12 @@ chmod 755 *
 A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish and pycoQC are installed.
 Then, you can open the **config_MinION_mobile_lab.R** file with a text editor and set the variables _PIPELINE_DIR_ and _MINICONDA_DIR_ to the value suggested by the installation step.
 
+## Overview
+
+<p align="center">
+  <img src="Figures/ONTrack_pipeline_flowchart.png" alt="drawing" width="700" title="ONTrack_pipeline_flowchart">
+</p>
+
 ## Usage
 
 The ONTrack pipeline can be applied either starting from raw fast5 files, or from already basecalled and demultiplexed sequences.
@@ -122,14 +128,6 @@ Outputs (saved in \<fast5_dir\>_analysis/basecalling):
 
 Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
 * Temporary files for demultiplexing, filtering based on read length and adapters trimming
-
-
-
-<p align="center">
-  <img src="Figures/ONTrack_pipeline_flowchart.png" alt="drawing" width="700" title="ONTrack_pipeline_flowchart">
-</p>
-
-
 
 ## Auxiliary scripts
 
