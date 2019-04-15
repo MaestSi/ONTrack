@@ -111,6 +111,8 @@ if (!dir.exists(d2)) {
   cat(text = paste0("Raw reads directory: ", d1), sep = "\n")  
   cat(text = paste0("Basecalled reads directory: ", d2_basecalling), file = logfile, sep = "\n", append = TRUE)
   cat(text = paste0("Basecalled reads directory: ", d2_basecalling), sep = "\n")
+  cat(text = paste0("Preprocessing directory: ", d2_preprocessing), file = logfile, sep = "\n", append = TRUE)
+  cat(text = paste0("Preprocessing directory: ", d2_preprocessing), sep = "\n")
   cat(text = paste0("Analysis and results directory: ", d3), file = logfile, sep = "\n", append = TRUE)
   cat(text = paste0("Analysis and results directory: ", d3), sep = "\n")
   cat(text = paste0("Flow-cell: ", flowcell), file = logfile, sep = "\n", append = TRUE)
