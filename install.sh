@@ -26,6 +26,7 @@ conda config --add channels conda-forge
 conda create -n ONTrack_env python=3.6 blast emboss vsearch seqtk mafft porechop minimap2 samtools nanopolish
 source activate ONTrack_env
 pip install pycoQC
+echo -e "\n"
 echo "Modify variables PIPELINE_DIR and MINICONDA_DIR in config_MinION_mobile_lab.R"
 echo -e "PIPELINE_DIR: $PIPELINE_DIR"
 echo -e "MINICONDA_DIR: $MINICONDA_DIR \n"
