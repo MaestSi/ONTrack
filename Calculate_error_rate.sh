@@ -26,5 +26,5 @@ SAMPLE_NAME=$(echo $(basename $READS) | sed 's/\.fast.//g')
 WORKING_DIR=$(dirname $(realpath $READS))
 BAM=$WORKING_DIR"/"$SAMPLE_NAME"_vs_reference.bam"
 
-$MINIMAP2 -ax map-ont $REFERENCE $READS | $SAMTOOLS view -hSb -F2048 -F256 | $SAMTOOLS sort - -o $BAM && $SAMTOOLS index $BAM
+$MINIMAP2 -ax map-ont $REFERENCE $READS | $SAMTOOLS view -hSb -F2304 | $SAMTOOLS sort - -o $BAM && $SAMTOOLS index $BAM
 $SAMTOOLS stats $BAM | grep "^SN" | cut -f 2- > $WORKING_DIR"/"$SAMPLE_NAME"_error_rate_stats.txt"
