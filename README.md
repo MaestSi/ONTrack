@@ -1,5 +1,5 @@
 
-## ONTrack
+# ONTrack
 
 **ONTrack** is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from MinION sequencing reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
 
@@ -198,4 +198,8 @@ Outputs:
 
 ## Citation
 
-If this tool is useful for your work, please consider citing our preprint.
+If this tool is useful for your work, please consider citing our [preprint](http://example.com/).
+
+## Side notes
+
+As a real-life _Pokédex_, the workflow described in our [preprint](http://example.com/) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a species of [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) named after Leonardo DiCaprio.
