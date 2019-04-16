@@ -50,7 +50,7 @@ biocLite("Biostrings")
 
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
 
-For downloading the database:
+For downloading the database (~65GB):
 
 ```
 mkdir NCBI_nt_db
