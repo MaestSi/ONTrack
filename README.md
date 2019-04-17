@@ -35,7 +35,7 @@ Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable
 
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
 
-For downloading the database (~65 GB):
+For downloading the database (~200 GB):
 
 ```
 mkdir NCBI_nt_db
