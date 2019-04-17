@@ -33,21 +33,6 @@ tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
 A directory _ont-guppy-cpu_ should have been created in your current directory.
 Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to _ont-guppy-cpu_ directory.
 
-* R with package Biostrings installed and Rscript available in your path.
-Tested with R version 3.2.2 (2015-08-14) and Biostrings version 2.38.4.
-```which R``` and ```which Rscript``` should return the path to the executables.
-
-If you don't have R already installed, you could download and install it with:
-```
-conda install -c r r
-```
-Biostrings package could be installed with:
-```
-R
-source("http://bioconductor.org/biocLite.R")
-biocLite("Biostrings")
-```
-
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
 
 For downloading the database (~65 GB):
@@ -73,7 +58,7 @@ chmod 755 *
 ./install.sh
 ```
 
-A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish and pycoQC are installed.
+A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish, pycoQC and R with package Biostrings are installed.
 Then, you can open the **config_MinION_mobile_lab.R** file with a text editor and set the variables _PIPELINE_DIR_ and _MINICONDA_DIR_ to the value suggested by the installation step.
 
 ## Overview
