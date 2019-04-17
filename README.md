@@ -35,13 +35,13 @@ Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable
 
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
 
-For downloading the database (~200 GB):
+For downloading the database (~65 GB):
 
 ```
 mkdir NCBI_nt_db
 cd NCBI_nt_db
 echo `date +%Y-%m-%d` > download_date.txt
-wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/n*
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*
 targz_files=$(find . | grep \.tar\.gz$ | sed 's/\.\///g')
 for f in $targz_files; do tar -xzvf $f; done
 rm $targz_files
