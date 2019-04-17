@@ -202,4 +202,4 @@ If this tool is useful for your work, please consider citing our [preprint](http
 
 ## Side notes
 
-As a real-life _Pokédex_, the workflow described in our [preprint](http://example.com/) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a species of [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) named after Leonardo DiCaprio.
+As a real-life _Pokédex_, the workflow described in our [preprint](http://example.com/) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
