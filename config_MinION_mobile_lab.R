@@ -49,13 +49,13 @@ flip_flop_flag <- 0
 #doBlast flag (if equal to 1, blast consensus sequence against NCBI nt database)
 doBlast <- 1
 ########################################################################################################
-PIPELINE_DIR <- "/home/simone/MinION/MinION_scripts/mobile_laboratory_autosetup/ONTrack"
+PIPELINE_DIR <- "path/to/ONTrack"
 #MINICONDA DIR
-MINICONDA_DIR <- "/home/simone/miniconda3"
+MINICONDA_DIR <- "path/to/miniconda3"
 #basecaller_dir (v2.3.7+e041753)
-BASECALLER_DIR <- "/home/simone/MinION/software/ont-guppy-cpu/bin/"
+BASECALLER_DIR <- "path/to/ont-guppy-cpu/bin/"
 #NCBI nt database
-NTDB <- "/home/db/NR_2018_06_01/nt"
+NTDB <- "path/to/NCBI_nt_db/nt"
 ########################################################################################################
 #path to ONTrack.R
 ONTrack <- paste0(PIPELINE_DIR, "/ONTrack.R")
