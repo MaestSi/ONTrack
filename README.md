@@ -1,7 +1,7 @@
 
 # ONTrack
 
-**ONTrack** is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from MinION sequence reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
+**ONTrack** is a rapid and accurate MinION-based barcoding pipeline for tracking species biodiversity on site; starting from MinION sequence reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
 
 <p align="center">
   <img src="Figures/ONTrack_logo.png" alt="drawing" width="550" title="ONTrack_logo">
