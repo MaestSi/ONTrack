@@ -20,8 +20,8 @@ READS=$1
 DRAFT_READS=$2
 CONTIG=$3
 
-SAMTOOLS=/path/to/samtools
-MINIMAP2=/path/to/minimap2
+MINIMAP2=path/to/minimap2
+SAMTOOLS=path/to/samtools
 
 wdir=$(realpath $(pwd))
 reads_full=$wdir"/"$READS
