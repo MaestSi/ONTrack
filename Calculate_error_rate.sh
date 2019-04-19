@@ -19,8 +19,8 @@
 READS=$1
 REFERENCE=$2
 
-SAMTOOLS=/path/to/samtools
-MINIMAP2=/path/to/minimap2
+SAMTOOLS=path/to/samtools
+MINIMAP2=path/to/minimap2
 
 SAMPLE_NAME=$(echo $(basename $READS) | sed 's/\.fast.//g')
 WORKING_DIR=$(dirname $(realpath $READS))
