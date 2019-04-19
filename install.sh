@@ -18,8 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-
-PIPELINE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PIPELINE_DIR=$(realpath $( dirname "${BASH_SOURCE[0]}" ))
 MINICONDA_DIR=$(which conda | sed 's/bin.*$//')
 conda config --add channels bioconda
 conda config --add channels conda-forge
