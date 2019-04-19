@@ -21,7 +21,7 @@
 CONTIGS_DIR=$1
 SANGER_DIR=$2
 
-BLASTN=/path/to/blastn
+BLASTN=path/to/blastn
 
 contigs_files=$(find $CONTIGS_DIR -maxdepth 1 | grep "\\.contigs\\.fasta")
 sanger_files=$(find $SANGER_DIR -maxdepth 1 | grep "reference.*\\.fasta")
