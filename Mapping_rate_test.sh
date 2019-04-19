@@ -20,8 +20,8 @@ READS=$1
 DRAFT_READS=$2
 CONTIG=$3
 
-SAMTOOLS=/home/simone/miniconda3/bin/samtools
-MINIMAP2=/home/simone/miniconda3/bin/minimap2
+SAMTOOLS=/path/to/samtools
+MINIMAP2=/path/to/minimap2
 
 wdir=$(realpath $(pwd))
 reads_full=$wdir"/"$READS
