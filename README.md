@@ -31,7 +31,7 @@ wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_2.3.7_l
 tar -xf ont-guppy-cpu_2.3.7_linux64.tar.gz
 ```
 A directory _ont-guppy-cpu_ should have been created in your current directory.
-Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to _ont-guppy-cpu_ directory.
+Then, after completing _ONTrack_ installation, set the _BASECALLER_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to _ont-guppy-cpu/bin_ directory.
 
 * NCBI nt database (optional, in case you want to perform a local Blast analysis of your consensus sequences).
 
