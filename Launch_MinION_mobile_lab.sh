@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # Copyright 2019 Simone Maestri. All rights reserved.
 # Simone Maestri <simone.maestri@univr.it>
@@ -16,15 +18,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-READS=$1
-REFERENCE=$2
-
-MINIMAP2=/path/to/minimap2
-SAMTOOLS=/path/to/samtools
-
-SAMPLE_NAME=$(echo $(basename $READS) | sed 's/\.fast.//g')
-WORKING_DIR=$(dirname $(realpath $READS))
-BAM=$WORKING_DIR"/"$SAMPLE_NAME"_vs_reference.bam"
-
-$MINIMAP2 -ax map-ont $REFERENCE $READS | $SAMTOOLS view -hSb -F2304 | $SAMTOOLS sort - -o $BAM && $SAMTOOLS index $BAM
-$SAMTOOLS stats $BAM | grep "^SN" | cut -f 2- > $WORKING_DIR"/"$SAMPLE_NAME"_error_rate_stats.txt"
+RAW_READS_DIR=$1
+RAW_READS_DIR_FULL=$(realpath $RAW_READS_DIR)
+source activate ONTrack_env
+PIPELINE_DIR=$(realpath $( dirname "${BASH_SOURCE[0]}" ))
+nohup Rscript $PIPELINE_DIR/MinION_mobile_lab.R $PIPELINE_DIR/config_MinION_mobile_lab.R $RAW_READS_DIR_FULL &

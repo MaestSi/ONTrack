@@ -1,10 +1,10 @@
 
 # ONTrack
 
-**ONTrack** is a rapid and accurate MinION-based barcoding pipeline for tracking species biodiversity on site; starting from MinION sequence reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
+**ONTrack** is a rapid and accurate MinION-based pipeline for tracking species biodiversity on site; starting from MinION sequence reads, the ONTrack pipeline is able to provide accurate consensus sequences in ~15 minutes per sample on a standard laptop. Moreover, a preprocessing pipeline is provided, so to make the whole bioinformatic analysis from raw fast5 files to consensus sequences straightforward and simple.
 
 <p align="center">
-  <img src="Figures/ONTrack_logo.png" alt="drawing" width="550" title="ONTrack_logo">
+  <img src="Figures/ONTrack_logo.png" alt="drawing" width="350" title="ONTrack_logo">
 </p>
 
 ## Getting started
@@ -72,7 +72,7 @@ Then, you can open the **config_MinION_mobile_lab.R** file with a text editor an
 The ONTrack pipeline can be applied either starting from raw fast5 files, or from already basecalled and demultiplexed sequences.
 In both cases, the first step of the pipeline requires you to open the **config_MinION_mobile_lab.R** file with a text editor and to modify it according to the features of your sequencing experiment and your preferences.
 If you have already basecalled and demultiplexed your sequences, you can run the pipeline using the **ONTrack.R** script.
-Otherwise, you can run the pipeline using the **launch_MinION_mobile_lab.sh** script.
+Otherwise, you can run the pipeline using the **Launch_MinION_mobile_lab.sh** script.
 
 **ONTrack.R**
 
@@ -90,10 +90,10 @@ Outputs (saved in <home_dir>):
 * \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _doBlast_ variable is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
-**launch_MinION_mobile_lab.sh**
+**Launch_MinION_mobile_lab.sh**
 
 Usage:
-launch_MinION_mobile_lab.sh \<fast5_dir\>
+Launch_MinION_mobile_lab.sh \<fast5_dir\>
 
 Note: modify **config_MinION_mobile_lab.R** before running; the script runs the full pipeline from raw fast5 files to consensus sequences.
 
@@ -116,15 +116,15 @@ Outputs (saved in \<fast5_dir\>_analysis/preprocessing):
 
 ## Auxiliary scripts
 
-In the following, auxiliary scripts run either by **ONTrack.R** or by **launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
+In the following, auxiliary scripts run either by **ONTrack.R** or by **Launch_MinION_mobile_lab.sh** are listed. These scripts should not be called directly.
 
 **MinION_mobile_lab.R**
 
-Note: script run by _launch_MinION_mobile_lab.sh_.
+Note: script run by _Launch_MinION_mobile_lab.sh_.
 
 **config_MinION_mobile_lab.R**
 
-Note: configuration script, must be modified before running _launch_MinION_mobile_lab.sh_ or _ONTrack.R_.
+Note: configuration script, must be modified before running _Launch_MinION_mobile_lab.sh_ or _ONTrack.R_.
 
 **subsample_fast5.sh**
 
@@ -134,7 +134,7 @@ Note: script run by _MinION_mobile_lab.R_ if _do_subsampling_flag_ variable is s
 
 Note: script run by _MinION_mobile_lab.R_ for removing reads shorter than mean - 2\*sd and longer than mean + 2\*sd.
 
-**DecONT.sh**
+**decONT.sh**
 
 Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in the most abundant cluster.
 
@@ -154,9 +154,9 @@ Output (saved in \<contigs dir\>):
 * <results_"sample_name".txt>: file including alignment of MinION consensus sequence to corresponding Sanger sequence
 * \<Sanger_check_report.txt\>: file including overall alignment statistics and number of uncertain nucleotides in Sanger sequences
 
-**Mapping_rate_test.sh**
+**Calculate_Mapping_rate.sh**
 
-Usage: Mapping_rate_test.sh \<reads\> \<draft reads\> \<consensus sequence\>
+Usage: Calculate_mapping_rate.sh \<reads\> \<draft reads\> \<consensus sequence\>
 
 Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executables inside the script
 
