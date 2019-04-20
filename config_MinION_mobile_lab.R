@@ -20,7 +20,7 @@
 #load BioStrings package
 suppressMessages(library(Biostrings))
 #if do_subsampling_flag is equal to 1, subsampling of num_kilo_reads*1000 reads is performed
-do_subsampling_flag <- 1
+do_subsampling_flag <- 0
 #num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag == 1)                                                      
 num_kilo_reads <- 10
 #BC_int are the barcodes used in the experiment
@@ -30,7 +30,7 @@ BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07")
 #barcode_kits <- c("EXP-NBD103", "EXP-NBD114", "EXP-PBC001", "EXP-PBC096", "SQK-16S024", "SQK-LWB001", "SQK-RAB201", "SQK-RBK001", "SQK-RBK004", "SQK-RLB001", "VMK-VMK001")
 barcode_kits <- c("EXP-PBC001")
 #kit (1D/1D^2 reads/rapid 16S)
-kit <- "SQK-LSK108"
+kit <- "SQK-LSK109"
 #pair_strands_flag is a variable that controls, in case a 1d2 kit has been used, if 1d2 basecalling has to be performed (when set equal to 1 ) or not
 pair_strands_flag <- 0
 #flowcell chemistry (R9.4/R9.5 chemistry)
