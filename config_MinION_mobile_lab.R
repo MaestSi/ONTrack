@@ -53,7 +53,7 @@ PIPELINE_DIR <- "/path/to/ONTrack"
 #MINICONDA DIR
 MINICONDA_DIR <- "/path/to/miniconda3"
 #basecaller_dir (v2.3.7+e041753)
-BASECALLER_DIR <- "/path/to/ont-guppy-cpu/bin/"
+BASECALLER_DIR <- "/path/to/ont-guppy-cpu/bin"
 #NCBI nt database
 NTDB <- "/path/to/NCBI_nt_db/nt"
 ########################################################################################################
@@ -61,7 +61,7 @@ NTDB <- "/path/to/NCBI_nt_db/nt"
 ONTrack <- paste0(PIPELINE_DIR, "/ONTrack.R")
 #num iterations of ONTrack pipeline (must be odd)
 num_iterations <- 3
-#path to DecONT.sh
+#path to decONT.sh
 DECONT <- paste0(PIPELINE_DIR, "/decONT.sh")
 #path to remove_long_short.pl
 remove_long_short <- paste0(PIPELINE_DIR, "/remove_long_short.pl")
