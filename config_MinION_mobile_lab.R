@@ -21,7 +21,7 @@
 suppressMessages(library(Biostrings))
 #if do_subsampling_flag is equal to 1, subsampling of num_kilo_reads*1000 reads is performed
 do_subsampling_flag <- 0
-#num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag == 1)                                                      
+#num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag == 1)
 num_kilo_reads <- 10
 #BC_int are the barcodes used in the experiment
 #BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
@@ -44,7 +44,7 @@ amplicon_length <- 710
 #set primers length [bp]
 primers_length <- 25
 #flip_flop flag is a variable that determines whether basecalling is performed with the standard
-#algorithm or with the flip-flop 'large' algorithm (when set equal to 1), slower but more accurate 
+#algorithm or with the flip-flop 'large' algorithm (when set equal to 1), slower but more accurate
 flip_flop_flag <- 0
 #doBlast flag (if equal to 1, blast consensus sequence against NCBI nt database)
 doBlast <- 1
