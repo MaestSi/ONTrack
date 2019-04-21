@@ -162,7 +162,7 @@ Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executabl
 
 Inputs:
 * \<reads\>: MinION reads in fastq or fasta format
-* \<draft reads\>: MinION reads in fasta format used for creating draft consensus sequence
+* \<draft reads\>: MinION reads in fastq or fasta format used for creating draft consensus sequence, after contaminants removal
 * \<consensus sequence\>: polished consensus sequence in fasta format
 
 Output (saved in current directory):
