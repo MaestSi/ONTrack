@@ -153,13 +153,13 @@ cat(text = paste0("Basecalling started at ", date()), file = logfile, sep = "\n"
 cat(text = paste0("Basecalling started at ", date()), sep = "\n")
 
 num_threads_caller <- round(num_threads/4)
-if (flip_flop_flag==1) {
+if (flip_flop_flag == 1) {
   system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads_caller, " -c dna_r9.4.1_450bps_flipflop.cfg --hp_correct TRUE --fast5_out -s ", d2_basecalling, " --disable_pings"))
 } else {
   system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads_caller, " --flowcell ", flowcell, " --kit ", kit, " --hp_correct TRUE --fast5_out -s ", d2_basecalling, " --disable_pings"))
 }
 
-if (pair_strands_flag==1) {
+if (pair_strands_flag == 1) {
   system(paste0(basecaller_1d2, " -r -i ", d2_basecalling, "/workspace --cpu_threads_per_caller ", num_threads_caller, " --config dna_r9.5_450bps_1d2_raw.cfg -f ", d2_basecalling, "/sequencing_summary.txt -s ", d2, "/basecalling_1d2 --disable_pings"))
   d2_basecalling <- paste0(d2, "/basecalling_1d2")
 }
