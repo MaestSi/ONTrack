@@ -203,9 +203,14 @@ cat(text = "Now performing quality control with PycoQC", file = logfile, sep = "
 cat(text = "Now performing quality control with PycoQC", sep = "\n")
 cat(text = "", file = logfile, sep = "\n", append = TRUE)
 cat(text = "", sep = "\n")
-#system(paste0(MINIONQC, " -i ", d2_basecalling, "/sequencing_summary.txt -o ", d2, "/qc"))
-system(paste0(PYCOQC, " -f ", d2_basecalling, "/sequencing_summary.txt -b ", d2_preprocessing, "/barcoding_summary.txt -o ", d2, "/qc/pycoQC_report.html"))
 
+#system(paste0(MINIONQC, " -i ", d2_basecalling, "/sequencing_summary.txt -o ", d2, "/qc"))
+
+if (pair_strands_flag == 1) {
+  system(paste0(PYCOQC, " -f ", d2_basecalling, "/sequencing_1dsq_summary.txt -b ", d2_preprocessing, "/barcoding_summary.txt -o ", d2, "/qc/pycoQC_report.html"))
+} else {
+  system(paste0(PYCOQC, " -f ", d2_basecalling, "/sequencing_summary.txt -b ", d2_preprocessing, "/barcoding_summary.txt -o ", d2, "/qc/pycoQC_report.html"))
+}
 demu_files <- list.files(path = d2_preprocessing, pattern = "BC", full.names = TRUE)
 for (i in 1:length(demu_files)) {
   BC_val_curr <- substr(x = basename(demu_files[i]), start = 3, stop = 4)
