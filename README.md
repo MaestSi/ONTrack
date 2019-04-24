@@ -183,8 +183,8 @@ Outputs:
 
 ## Citation
 
-If this tool is useful for your work, please consider citing our [preprint](https://doi.org/10.1101/617019).
+If this tool is useful for your work, please consider citing our [preprint](https://www.biorxiv.org/content/10.1101/617019v1).
 
 ## Side notes
 
-As a real-life _Pokédex_, the workflow described in our [preprint](https://doi.org/10.1101/617019) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
+As a real-life _Pokédex_, the workflow described in our [preprint](https://www.biorxiv.org/content/10.1101/617019v1) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
