@@ -19,10 +19,10 @@
 ####################################################################################################
 #load BioStrings package
 suppressMessages(library(Biostrings))
-#if do_subsampling_flag is equal to 1, subsampling of num_kilo_reads*1000 reads is performed
+#if do_subsampling_flag <- 1, subsampling of num_kilo_reads*1000 reads is performed; otherwise set do_subsampling_flag <- 0
 do_subsampling_flag <- 0
-#num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag == 1)
-num_kilo_reads <- 10
+#num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag <- 1)                                                      
+num_kilo_reads <- 50
 #BC_int are the barcodes used in the experiment
 #BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
 BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07")
@@ -31,11 +31,13 @@ BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07")
 barcode_kits <- c("EXP-PBC001")
 #kit (1D/1D^2 reads/rapid 16S)
 kit <- "SQK-LSK109"
-#pair_strands_flag is a variable that controls, in case a 1d2 kit has been used, if 1d2 basecalling has to be performed (when set equal to 1 ) or not
-pair_strands_flag <- 0
-#flowcell chemistry (R9.4/R9.5 chemistry)
+#flowcell chemistry (R9.4.1 --> FLO-MIN106, R9.5 --> FLO-MIN107 chemistry)
 flowcell <- "FLO-MIN106"
-#save_space_flag is a variable that controls deletion of temporary files; if it is equal to 1, temporary files are deleted
+#fast_basecalling_flag <- 1 if you want to use the fast basecalling algorithm; otherwise set fast_basecalling_flag <- 0 if you want to use the accurate but slow one (FLO-MIN106 only)
+fast_basecalling_flag <- 1
+#pair_strands_flag <- 1 if, in case a 1d2 kit and FLO-MIN107 flow-cell have been used, you want to perform 1d2 basecalling; otherwise set pair_strands_flag <- 0
+pair_strands_flag <- 0
+#save_space_flag <- 1 if you want temporary files to be automatically deleted; otherwise set save_space_flag <- 0
 save_space_flag <- 0
 #set the maximum number of threads to be used
 num_threads <- 30
@@ -43,17 +45,14 @@ num_threads <- 30
 amplicon_length <- 710
 #set primers length [bp]
 primers_length <- 25
-#flip_flop flag is a variable that determines whether basecalling is performed with the standard
-#algorithm or with the flip-flop 'large' algorithm (when set equal to 1), slower but more accurate
-flip_flop_flag <- 0
-#doBlast flag (if equal to 1, blast consensus sequence against NCBI nt database)
+#doBlast <- 1 if you want to perform blast analysis of consensus sequences; otherwise set doBlast <- 0
 doBlast <- 1
 ########################################################################################################
 PIPELINE_DIR <- "/path/to/ONTrack"
 #MINICONDA DIR
 MINICONDA_DIR <- "/path/to/miniconda3"
-#basecaller_dir (v2.3.7+e041753)
-BASECALLER_DIR <- "/path/to/ont-guppy-cpu/bin"
+#basecaller_dir (v3.0.3+7e7b7d0)
+BASECALLER_DIR <- "/path/to/ont-guppy-cpu/bin/"
 #NCBI nt database
 NTDB <- "/path/to/NCBI_nt_db/nt"
 ########################################################################################################
@@ -61,7 +60,7 @@ NTDB <- "/path/to/NCBI_nt_db/nt"
 ONTrack <- paste0(PIPELINE_DIR, "/ONTrack.R")
 #num iterations of ONTrack pipeline (must be odd)
 num_iterations <- 3
-#path to decONT.sh
+#path to DecONT.sh
 DECONT <- paste0(PIPELINE_DIR, "/decONT.sh")
 #path to remove_long_short.pl
 remove_long_short <- paste0(PIPELINE_DIR, "/remove_long_short.pl")

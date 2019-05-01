@@ -35,32 +35,23 @@ if (!exists("num_kilo_reads")) {
   num_kilo_reads <- 30
 }
 
-if (!exists("flip_flop_flag")) {
-  flip_flop_flag <- 0
+if (!exists("fast_basecalling_flag") || flowcell == "FLO-MIN107") {
+  fast_basecalling_flag <- 0
 }
 
 if (!exists("amplicon_length")) {
   amplicon_length <- 710
 }
 
-if (!exists("pair_strands_flag")) {
+if (!exists("pair_strands_flag") || flowcell == "FLO-MIN106") {
   pair_strands_flag <- 0
 }
 
 if (do_subsampling_flag == 1) {
-  if (flip_flop_flag == 1) {
-    #d2 is the directory which is going to include processed reads
-    d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_", num_kilo_reads, "k_subsampled_reads_analysis_flipflop")
-  } else {
     #d2 is the directory which is going to include processed reads
     d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_", num_kilo_reads, "k_subsampled_reads_analysis")
-  }
 } else {
-   if (flip_flop_flag == 1) {
-    d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_analysis_flipflop")
-   } else {
     d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_analysis")
-   }
 }
 
 d2_basecalling <- paste0(d2, "/basecalling")
@@ -129,13 +120,20 @@ if (!dir.exists(d2)) {
   cat(text = "\n")
   cat(text = paste0("Basecalling is going to be performed by ", basecaller_version), file = logfile, sep = "\n", append = TRUE)
   cat(text = paste0("Basecalling is going to be performed by ", basecaller_version), sep = "\n")
+  if (fast_basecalling_flag == 1 && flowcell == "FLO-MIN106") {
+    cat(text = "Basecalling model: fast", file = logfile, sep = "\n", append = TRUE)
+    cat(text = "Basecalling model: fast", sep = "\n")
+  } else if (fast_basecalling_flag != 1 && flowcell == "FLO-MIN106") {
+    cat(text = "Basecalling model: high-accuracy", file = logfile, sep = "\n", append = TRUE)
+    cat(text = "Basecalling model: high-accuracy", sep = "\n")
+  }
   cat(text = paste0("Demultiplexing is going to be performed by guppy_barcoder after basecalling"), file = logfile, sep = ", ", append = TRUE)
   cat(text = paste0("Demultiplexing is going to be performed by guppy_barcoder after basecalling"), sep = ", ")
   cat(text = "\n", file = logfile, append = TRUE)
   cat(text = "\n")
 } else {
-  cat(text = paste0(d2, " directory already exists; delete it and then restart the analysis!"), file = logfile, sep = "\n", append = TRUE)
-  cat(text = paste0(d2, " directory already exists; delete it and then restart the analysis!"), sep = "\n")
+  cat(text = paste0(d2, " directory already exists; delete or rename it and then restart the analysis!"), file = logfile, sep = "\n", append = TRUE)
+  cat(text = paste0(d2, " directory already exists; delete or rename it and then restart the analysis!"), sep = "\n")
   return()
 }
 
@@ -153,8 +151,8 @@ cat(text = paste0("Basecalling started at ", date()), file = logfile, sep = "\n"
 cat(text = paste0("Basecalling started at ", date()), sep = "\n")
 
 num_threads_caller <- round(num_threads/4)
-if (flip_flop_flag == 1) {
-  system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads_caller, " -c dna_r9.4.1_450bps_flipflop.cfg --hp_correct TRUE --fast5_out -s ", d2_basecalling, " --disable_pings"))
+if (fast_basecalling_flag == 1) {
+  system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads_caller, " -c dna_r9.4.1_450bps_fast.cfg --hp_correct TRUE --fast5_out -s ", d2_basecalling, " --disable_pings"))
 } else {
   system(paste0(basecaller, " -r -i ", d1, " --cpu_threads_per_caller ", num_threads_caller, " --flowcell ", flowcell, " --kit ", kit, " --hp_correct TRUE --fast5_out -s ", d2_basecalling, " --disable_pings"))
 }
@@ -172,7 +170,6 @@ cat(text = "\n")
 cat(text = paste0("Demultiplexing started at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing started at ", date()), sep = "\n")
 system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing, " --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\"", " --kit ", kit))
-#system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing))
 cat(text = paste0("Demultiplexing finished at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing finished at ", date()), sep = "\n")
 cat(text = "\n", file = logfile, append = TRUE)
@@ -203,8 +200,6 @@ cat(text = "Now performing quality control with PycoQC", file = logfile, sep = "
 cat(text = "Now performing quality control with PycoQC", sep = "\n")
 cat(text = "", file = logfile, sep = "\n", append = TRUE)
 cat(text = "", sep = "\n")
-
-#system(paste0(MINIONQC, " -i ", d2_basecalling, "/sequencing_summary.txt -o ", d2, "/qc"))
 
 if (pair_strands_flag == 1) {
   system(paste0(PYCOQC, " -f ", d2_basecalling, "/sequencing_summary.txt -b ", d2_preprocessing, "/barcoding_summary.txt -o ", d2, "/qc/pycoQC_report.html"))
