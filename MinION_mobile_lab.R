@@ -31,8 +31,8 @@ if (!exists("do_subsampling_flag")) {
   do_subsampling_flag <- 0
 }
 
-if (!exists("num_kilo_reads")) {
-  num_kilo_reads <- 30
+if (!exists("num_fast5_files")) {
+  num_fast5_files <- 100
 }
 
 if (!exists("fast_basecalling_flag") || flowcell == "FLO-MIN107") {
@@ -49,7 +49,7 @@ if (!exists("pair_strands_flag") || flowcell == "FLO-MIN106") {
 
 if (do_subsampling_flag == 1) {
     #d2 is the directory which is going to include processed reads
-    d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_", num_kilo_reads, "k_subsampled_reads_analysis")
+    d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_", num_fast5_files, "_subsampled_fast5_files_analysis")
 } else {
     d2 <- paste0(dirname(d1_tmp), "/", basename(d1_tmp), "_analysis")
 }
@@ -89,11 +89,10 @@ if (!dir.exists(d2)) {
   cat(text = "\n")
   
   if (do_subsampling_flag == 1) {
-    num_raw_reads <- num_kilo_reads*1000
-    cat(text = paste0("Subsampling ", num_raw_reads, " reads from directory ", d1_tmp), file = logfile, sep = "\n", append = TRUE)
-    cat(text = paste0("Subsampling ", num_raw_reads, " reads from directory ", d1_tmp), sep = "\n")
-    system(command = paste0(subsample_fast5, " ", d1_tmp, " ", num_kilo_reads))
-    d1 <- paste0(gsub("\\/$", "", d1_tmp), "_", num_kilo_reads, "k_subsampled_reads")
+    cat(text = paste0("Subsampling ", num_fast5_files, " fast5 files from directory ", d1_tmp), file = logfile, sep = "\n", append = TRUE)
+    cat(text = paste0("Subsampling ", num_fast5_files, " fast5 files from directory ", d1_tmp), sep = "\n")
+    system(command = paste0(subsample_fast5, " ", d1_tmp, " ", num_fast5_files))
+    d1 <- paste0(gsub("\\/$", "", d1_tmp), "_", num_fast5_files, "_subsampled_fast5_files")
   } else {
     d1 <- d1_tmp
   }   
