@@ -19,10 +19,10 @@
 ####################################################################################################
 #load BioStrings package
 suppressMessages(library(Biostrings))
-#if do_subsampling_flag <- 1, subsampling of num_kilo_reads*1000 reads is performed; otherwise set do_subsampling_flag <- 0
+#if do_subsampling_flag <- 1, subsampling of num_fast5_files fast5 files is performed; otherwise set do_subsampling_flag <- 0
 do_subsampling_flag <- 0
-#num_kilo reads is the number of thousands of reads to be subsampled/analysed (if do_subsampling_flag <- 1)                                                      
-num_kilo_reads <- 50
+#num_fast5_files is the number of fast5 files to be subsampled/analysed (if do_subsampling_flag <- 1)                                                      
+num_fast5_files <- 100
 #BC_int are the barcodes used in the experiment
 #BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
 BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07")
