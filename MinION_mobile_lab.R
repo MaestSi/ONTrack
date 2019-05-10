@@ -141,8 +141,6 @@ BC_tot_full <- c(BC_tot, paste0("BC", 13:99))
 BC_trash <- setdiff(BC_tot_full, BC_int)
 BC_trash <- paste0("^", BC_trash)
 
-num_reads <- num_kilo_reads*1000
-
 cat(text = "\n", file = logfile, append = TRUE)
 cat(text = "\n")
 
