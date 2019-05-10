@@ -19,11 +19,11 @@
 #
 
 INPUT_DIR=$1
-NUM_K_READS=$2
+NUM_FAST5_FILES=$2
 
-output_dir=$(dirname $INPUT_DIR)/$(basename $INPUT_DIR)"_"$NUM_K_READS"k_subsampled_reads"
+output_dir=$(dirname $INPUT_DIR)/$(basename $INPUT_DIR)"_"$NUM_FAST5_FILES"_subsampled_fast5_files"
 mkdir $output_dir
 
-for f in $(find $INPUT_DIR | grep "\\.fast5" | shuf -n $((1000*$NUM_K_READS)));
+for f in $(find $INPUT_DIR | grep "\\.fast5" | shuf -n $NUM_FAST5_FILES);
   do  cp $f $output_dir;
 done
