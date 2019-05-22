@@ -86,6 +86,8 @@ if (!exists("pair_strands_flag")) {
   pair_strands_flag <- 0
 }
 
+logfile <- paste0(home_dir, "/logfile.txt")
+
 fasta_files <- list.files(path = home_dir, pattern = "BC\\d+\\.fasta", full.names = TRUE)
 fastq_files <- paste0(home_dir, "/", gsub(pattern = "\\.fasta$", replacement = "\\.fastq", x = basename(fasta_files)))
 
@@ -106,13 +108,18 @@ for (i in 1:length(fasta_files)) {
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fasta ", sample_dir))
   system(paste0("mv ", home_dir, "/", sample_name, "_decont.fastq ", sample_dir))
   
+  num_reads_mac <- as.double(system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l"), intern=TRUE))
   target_reads_contig <- 200
-  plurality_value <- 0.15*target_reads_contig
   target_reads_polishing <- 200
-  
-  if (as.double(system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l"), intern=TRUE)) < target_reads_contig) {
-    next
+    
+  if (num_reads_mac < target_reads_contig) {
+    target_reads_contig <- num_reads_mac
+    target_reads_polishing <- num_reads_mac
+    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"), sep = "\n")
+    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"),  file = logfile, sep = "\n", append = TRUE)
   }
+
+  plurality_value <- 0.15*target_reads_contig
 
   for (j in 1:num_iterations) {
     draft_contig_curr_tmp1 <- paste0(sample_dir, "/", sample_name, "_non_polished.contig_", j, "_tmp1.fasta")
