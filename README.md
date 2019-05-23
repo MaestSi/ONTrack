@@ -23,7 +23,7 @@ chmod 755 Miniconda3-latest-Linux-x86_64.sh
 
 Then, after completing _ONTrack_ installation, set the _MINICONDA_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to miniconda3 directory.
 
-* Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3 (ONTrack-v1.0) and with Guppy v3.0.
+* Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3 (ONTrack-v1.0), Guppy v3.0 (ONTrack-v1.1) and Guppy v3.1.
 If you don't have [Guppy](https://community.nanoporetech.com/downloads) installed, choose an appropriate version and install it.
 For example, you could download and unpack the archive with:
 ```
@@ -188,3 +188,5 @@ If this tool is useful for your work, please consider citing our [preprint](http
 ## Side notes
 
 As a real-life _Pokédex_, the workflow described in our [preprint](https://www.biorxiv.org/content/10.1101/617019v1) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
+
+Last but not least, special thanks to Davide Canevazzi (@davidecanevazzi) and Luca Marcolungo (@Liukvr) for helping me out in setting up and debugging the pipeline.
