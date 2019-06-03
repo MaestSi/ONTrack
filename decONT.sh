@@ -26,7 +26,7 @@ sample_id=$(echo $(basename $FASTA) | sed 's/\.fasta//')
 wdir=$(realpath $(dirname $FASTA))
 prefix=$wdir"/"$sample_id"_cluster_"
 prefix_bn=$(basename $prefix)
-$VSEARCH --cluster_fast $FASTA --id 0.7 --iddef 2 --clusterout_sort --fasta_width 0 --strand both --sizeout --consout $wdir"/consensus_"$sample_id".fasta" --clusters $prefix
+$VSEARCH --cluster_smallmem $FASTA --usersort --id 0.7 --iddef 2 --clusterout_sort --fasta_width 0 --strand both --sizeout --consout $wdir"/consensus_"$sample_id".fasta" --clusters $prefix
 centroid_mac=$(head -n1 $wdir"/consensus_"$sample_id".fasta")
 n_cl=$(ls $wdir | grep $prefix_bn | wc -l)
 id_centroid_tmp=$(echo $centroid_mac | sed 's/centroid=//g')
