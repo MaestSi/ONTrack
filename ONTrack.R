@@ -66,8 +66,8 @@ if (!exists("sequencing_summary")) {
   seq_sum_flag <- 1
 }
 
-if (!exists("doBlast")) {
-  doBlast <- 0
+if (!exists("do_blast_flag")) {
+  do_blast_flag <- 0
 }
 
 if (!exists("num_threads")) {
@@ -86,6 +86,10 @@ if (!exists("pair_strands_flag")) {
   pair_strands_flag <- 0
 }
 
+if (!exists("do_clustering_flag")) {
+  do_clustering_flag <- 1
+}
+
 logfile <- paste0(home_dir, "/logfile.txt")
 
 fasta_files <- list.files(path = home_dir, pattern = "BC\\d+\\.fasta", full.names = TRUE)
@@ -101,13 +105,17 @@ for (i in 1:length(fasta_files)) {
   sample_dir <- gsub(pattern = "\\.fasta", replacement = "", x = fasta_files[i])
   sample_name <- basename(sample_dir)
   dir.create(sample_dir)
-  system(paste0(DECONT, " ", fasta_files[i], " ", VSEARCH, " ", SEQTK))
-  system(paste0("mv ", home_dir, "/decontam_tmp_", sample_name, " ", sample_dir))
   decont_fasta <- paste0(sample_dir, "/", sample_name, "_decont.fasta")
   decont_fastq <- paste0(sample_dir, "/", sample_name, "_decont.fastq")
-  system(paste0("mv ", home_dir, "/", sample_name, "_decont.fasta ", sample_dir))
-  system(paste0("mv ", home_dir, "/", sample_name, "_decont.fastq ", sample_dir))
-  
+  if (do_clustering_flag == 1) {
+    system(paste0(DECONT, " ", fasta_files[i], " ", VSEARCH, " ", SEQTK))
+    system(paste0("mv ", home_dir, "/decontam_tmp_", sample_name, " ", sample_dir))
+    system(paste0("mv ", home_dir, "/", sample_name, "_decont.fasta ", sample_dir))
+    system(paste0("mv ", home_dir, "/", sample_name, "_decont.fastq ", sample_dir))
+  } else {
+    system(paste0("cp ", home_dir, "/", sample_name, ".fasta ", sample_dir, "/", sample_name, "_decont.fasta"))
+    system(paste0("cp ", home_dir, "/", sample_name, ".fastq ", sample_dir, "/", sample_name, "_decont.fastq"))
+  }  
   num_reads_mac <- as.double(system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l"), intern=TRUE))
   target_reads_contig <- 200
   target_reads_polishing <- 200
@@ -115,8 +123,13 @@ for (i in 1:length(fasta_files)) {
   if (num_reads_mac < target_reads_contig) {
     target_reads_contig <- num_reads_mac
     target_reads_polishing <- num_reads_mac
-    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"), sep = "\n")
-    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"),  file = logfile, sep = "\n", append = TRUE)
+    if (do_clustering_flag == 1) {
+      cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"), sep = "\n")
+      cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, " after contaminants removal"),  file = logfile, sep = "\n", append = TRUE)
+    } else {
+      cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name), sep = "\n")
+      cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name),  file = logfile, sep = "\n", append = TRUE)
+    }
   }
 
   plurality_value <- 0.15*target_reads_contig
@@ -211,7 +224,7 @@ for (i in 1:length(fasta_files)) {
   }
   
   ONtoBAR_compatibility <- 0
-  if (doBlast ==1 ) {
+  if (do_blast_flag ==1 ) {
     cat(text = paste0("BLASTing consensus for sample ", sample_name, " and saving results to ", basename(blast_results)), sep = "\n")
     if (ONtoBAR_compatibility != 1) {
       system(paste0(BLASTN, " -db ", NTDB, " -query ", final_contig, " > ", blast_results))
