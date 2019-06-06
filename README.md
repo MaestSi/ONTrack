@@ -58,7 +58,7 @@ chmod 755 *
 ./install.sh
 ```
 
-A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish, pycoQC and R with package Biostrings are installed.
+A conda environment named _ONTrack_env_ is created, where blast, emboss, vsearch, seqtk, mafft, porechop, minimap2, samtools, nanopolish, bedtools, pycoQC and R with package Biostrings are installed.
 Then, you can open the **config_MinION_mobile_lab.R** file with a text editor and set the variables _PIPELINE_DIR_ and _MINICONDA_DIR_ to the value suggested by the installation step.
 
 ## Overview
@@ -87,7 +87,7 @@ Inputs:
 
 Outputs (saved in <home_dir>):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _doBlast_ variable is set to 1 in **config_MinION_mobile_lab.R**)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _do_blast_flag_ variable is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
 **Launch_MinION_mobile_lab.sh**
@@ -102,7 +102,7 @@ Input
 
 Outputs (saved in \<fast5_dir\>_analysis/analysis):
 * \<"sample_name".contigs.fasta\>: polished consensus sequence in fasta format
-* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _do_Blast_ is set to 1 in **config_MinION_mobile_lab.R**)
+* \<"sample_name".blastn.txt\>: blast analysis of consensus sequence against NCBI nt database (if _do_blast_flag_ variable is set to 1 in **config_MinION_mobile_lab.R**)
 * \<"sample_name"\>: directory including intermediate files
 
 Outputs (saved in \<fast5_dir\>_analysis/qc):
@@ -136,7 +136,7 @@ Note: script run by _MinION_mobile_lab.R_ for removing reads shorter than mean -
 
 **decONT.sh**
 
-Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in the most abundant cluster.
+Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping only reads in the most abundant cluster, if _do_clustering_flag_ variable is set to 1 in _config_MinION_mobile_lab.R_.
 
 ## Checking scripts
 
@@ -180,6 +180,31 @@ Inputs:
 
 Outputs:
 * \<"sample_name"_error_rate_stats.txt\>: error rate statistics
+
+**Contaminants inspection analysis**
+
+When mapping rate of all reads from a sample is not in the range 95%-100%, you might be interested either in spotting if there is a predominant contaminant, or in trying to rescue the consensus sequence of your sample, if based on Blast analysis you realize that the consensus sequence from the most abundant cluster is not from the sample that you were supposed to sequence.
+In these cases, you could try to retrieve the reads that don't map to your consensus sequence, and run the _ONTrack_ pipeline again just on those reads. Remember in these cases to set the _do_clustering_flag_ variable to 1 in the _config_MinION_mobile_lab.R_ file.
+As an example, you could use the following code to retrieve unmapped reads for sample BC01.
+
+```
+SAMPLE_NAME=BC01
+ANALYSIS_DIR=/path/to/fast5_reads_analysis/analysis
+PIPELINE_DIR=/path/to/ONTrack
+
+source activate ONTrack_env
+
+cd $ANALYSIS_DIR
+$PIPELINE_DIR"/Calculate_mapping_rate.sh" $SAMPLE_NAME".fastq" $SAMPLE_NAME"/"$SAMPLE_NAME"_decont.fastq" $SAMPLE_NAME".contigs.fasta"
+
+if [ ! -d "contaminants_analysis" ]; then
+  mkdir contaminants_analysis
+fi
+
+samtools view -f4 -b $SAMPLE_NAME"_reads_on_contig.bam" > "contaminants_analysis/"$SAMPLE_NAME"_unmapped.bam"
+bedtools bamtofastq -i "contaminants_analysis/"$SAMPLE_NAME"_unmapped.bam" -fq "contaminants_analysis/"$SAMPLE_NAME".fastq"
+seqtk seq -A "contaminants_analysis/"$SAMPLE_NAME".fastq" > "contaminants_analysis/"$SAMPLE_NAME".fasta"
+```
 
 ## Citation
 
