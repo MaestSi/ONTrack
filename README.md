@@ -183,9 +183,9 @@ Outputs:
 
 **Contaminants inspection analysis**
 
-When mapping rate of all reads from a sample is not in the range 95%-100%, you might be interested either in spotting if there is a predominant contaminant, or in trying to rescue the consensus sequence of your sample, if based on Blast analysis you realize that the consensus sequence from the most abundant cluster is not from the sample that you were supposed to sequence.
+When the mapping rate of all reads from a sample is not in the range 95%-100%, you might be interested either in spotting if there is a predominant contaminant, or in trying to rescue the consensus sequence of your sample, if based on Blast analysis you realize that the consensus sequence from the most abundant cluster is not from the sample that you were supposed to sequence.
 In these cases, you could try to retrieve the reads that don't map to your consensus sequence, and run the _ONTrack_ pipeline again just on those reads. Remember in these cases to set the _do_clustering_flag_ variable to 1 in the _config_MinION_mobile_lab.R_ file.
-As an example, you could use the following code to retrieve unmapped reads for sample BC01.
+As an example, you could use the following code to retrieve unmapped reads for sample BC01 and save them to _contaminants_analysis_ folder.
 
 ```
 SAMPLE_NAME=BC01
