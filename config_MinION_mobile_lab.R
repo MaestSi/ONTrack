@@ -51,6 +51,8 @@ do_blast_flag <- 1
 do_clustering_flag <- 1
 #num iterations of ONTrack pipeline (must be odd)
 num_iterations <- 3
+#majority_rule_full_seq_flag <- 1 if you want to pick the full consensus sequence supported by the highest number of iterations; otherwise set majority_rule_full_seq_flag <- 0
+majority_rule_full_seq_flag <- 1
 ########################################################################################################
 PIPELINE_DIR <- "/path/to/ONTrack"
 #MINICONDA DIR

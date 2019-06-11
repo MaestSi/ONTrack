@@ -90,6 +90,10 @@ if (!exists("do_clustering_flag")) {
   do_clustering_flag <- 1
 }
 
+if (!exists("majority_rule_full_seq_flag")) {
+  majority_rule_full_seq_flag <- 1
+}
+
 logfile <- paste0(home_dir, "/logfile.txt")
 
 fasta_files <- list.files(path = home_dir, pattern = "BC\\d+\\.fasta", full.names = TRUE)
@@ -200,25 +204,42 @@ for (i in 1:length(fasta_files)) {
   }
   final_contig <- paste0(home_dir, "/", sample_name, ".contigs.fasta")
   if (num_iterations > 1) {
-    plurality_value_agg <- 0.5*num_iterations
     aggregate_contigs <- paste0(sample_dir, "/", sample_name, ".contigs_", num_iterations, "iterations.fasta")
     polished_contig_agg <- list.files(path = sample_dir, pattern = paste0(sample_name, "\\.contigs_\\d*\\.fasta"), full.names = TRUE)
     system(paste0("cat ", paste0(polished_contig_agg, collapse = " "), " > ", aggregate_contigs))
-    final_contig_tmp1 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp1.fasta")
-    final_contig_tmp2 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp2.fasta")
-    final_contig_tmp3 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp3.fasta")
     mfa_file_agg <- gsub(pattern = "\\.fasta$", replacement = ".mfa", x = aggregate_contigs)
     system(paste0(MAFFT, " --op 0 --thread ", num_threads, " --adjustdirectionaccurately ", aggregate_contigs, " > ", mfa_file_agg))
-    system(paste0(CONS, " -sequence ", mfa_file_agg, " -plurality ", plurality_value_agg, " -outseq ", final_contig_tmp1))
-    system(paste0("sed 's/[nN]//g' ", final_contig_tmp1, " > ", final_contig_tmp2))
-    DNAStringSet_obj <- readDNAStringSet(final_contig_tmp2, "fasta")
-    DNAStringSet_obj_renamed <- DNAStringSet_obj
-    original_headers <- names(DNAStringSet_obj)
-    sequences <- seq(DNAStringSet_obj)
-    new_header <- paste0("contig_", num_iterations, "_iterations")
-    names(DNAStringSet_obj_renamed) <- new_header
-    writeXStringSet(x = DNAStringSet_obj_renamed, filepath = final_contig_tmp3, format = "fasta", width = 20000)
-    system(paste0(SEQTK, " trimfq ", final_contig_tmp3, " -b ", primers_length, " -e ", primers_length, " > ", final_contig))
+    if (majority_rule_full_seq_flag == 1) {
+      derep_file_agg <- gsub(pattern = "\\.fasta$", replacement = "_derep.fasta", x = aggregate_contigs)
+      most_freq_seq <- paste0(sample_dir, "/", sample_name, ".contigs_tmp1.fasta")
+      aggregate_contigs_onestrand <- gsub(pattern = "\\.fasta$", replacement = "_onestrand.fasta", x = aggregate_contigs)
+      system(paste0("cat ", mfa_file_agg, " | sed 's/-//g' > ", aggregate_contigs_onestrand))
+      system(paste0(VSEARCH, " --derep_prefix ", aggregate_contigs_onestrand , " --output ", derep_file_agg, " --sizeout --sizeorder --fasta_width 0"))
+      num_supp_seq <- as.double(system(paste0("head -n2 ", derep_file_agg, " | grep \"^>\" | sed 's/.*size=//'"), intern=TRUE))
+      if (num_supp_seq == 1) {
+        system(paste0("head -n2 ", aggregate_contigs, " > ", most_freq_seq))
+        cat(text = paste0("WARNING: No common sequence identified for sample ", sample_name, "; the sequence from the 1st iteration was selected"), sep = "\n")
+        cat(text = paste0("WARNING: No common sequence identified for sample ", sample_name, "; the sequence from the 1st iteration was selected"),  file = logfile, sep = "\n", append = TRUE)
+      } else {
+        system(paste0("head -n2 ", derep_file_agg, " > ", most_freq_seq))
+      }
+      system(paste0(SEQTK, " trimfq ", most_freq_seq, " -b ", primers_length, " -e ", primers_length, " > ", final_contig))
+    } else {
+      plurality_value_agg <- 0.5*num_iterations
+      final_contig_tmp1 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp1.fasta")
+      final_contig_tmp2 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp2.fasta")
+      final_contig_tmp3 <- paste0(sample_dir, "/", sample_name, ".contigs_tmp3.fasta")
+      system(paste0(CONS, " -sequence ", mfa_file_agg, " -plurality ", plurality_value_agg, " -outseq ", final_contig_tmp1))
+      system(paste0("sed 's/[nN]//g' ", final_contig_tmp1, " > ", final_contig_tmp2))
+      DNAStringSet_obj <- readDNAStringSet(final_contig_tmp2, "fasta")
+      DNAStringSet_obj_renamed <- DNAStringSet_obj
+      original_headers <- names(DNAStringSet_obj)
+      sequences <- seq(DNAStringSet_obj)
+      new_header <- paste0("contig_", num_iterations, "_iterations")
+      names(DNAStringSet_obj_renamed) <- new_header
+      writeXStringSet(x = DNAStringSet_obj_renamed, filepath = final_contig_tmp3, format = "fasta", width = 20000)
+      system(paste0(SEQTK, " trimfq ", final_contig_tmp3, " -b ", primers_length, " -e ", primers_length, " > ", final_contig))
+    }
   } else {
     system(paste0(SEQTK, " trimfq ", polished_contig_curr, " -b ", primers_length, " -e ", primers_length, " > ", final_contig))
   }
