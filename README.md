@@ -208,10 +208,12 @@ seqtk seq -A "contaminants_analysis/"$SAMPLE_NAME".fastq" > "contaminants_analys
 
 ## Citation
 
-If this tool is useful for your work, please consider citing our [preprint](https://www.biorxiv.org/content/10.1101/617019v1).
+If this tool is useful for your work, please consider citing our [manuscript](https://www.mdpi.com/2073-4425/10/6/468).
+
+Maestri S, Cosentino E, Paterno M, Freitag H, Garces JM, Marcolungo L, Alfano M, Njunjić I, Schilthuizen M, Slik F, Menegon M, Rossato M, Delledonne M. A Rapid and Accurate MinION-Based Workflow for Tracking Species Biodiversity in the Field. Genes. 2019; 10(6):468.
 
 ## Side notes
 
-As a real-life _Pokédex_, the workflow described in our [preprint](https://www.biorxiv.org/content/10.1101/617019v1) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
+As a real-life _Pokédex_, the workflow described in our [manuscript](https://www.mdpi.com/2073-4425/10/6/468) will facilitate tracking biodiversity in remote and biodiversity-rich areas. For instance, during a [Taxon Expedition](https://taxonexpeditions.com/) to Borneo, our analysis confirmed the novelty of a [beetle](https://www.theguardian.com/science/2018/apr/30/new-beetle-species-named-after-leonardo-dicaprio) species named after Leonardo DiCaprio.
 
 Last but not least, special thanks to Davide Canevazzi ([davidecanevazzi](https://github.com/davidecanevazzi)) and Luca Marcolungo ([Liukvr](https://github.com/Liukvr)) for helping me out in setting up and debugging the pipeline.
