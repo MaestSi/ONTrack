@@ -214,7 +214,7 @@ for (i in 1:length(fasta_files)) {
       most_freq_seq <- paste0(sample_dir, "/", sample_name, ".contigs_tmp1.fasta")
       aggregate_contigs_onestrand <- gsub(pattern = "\\.fasta$", replacement = "_onestrand.fasta", x = aggregate_contigs)
       system(paste0("cat ", mfa_file_agg, " | sed 's/-//g' > ", aggregate_contigs_onestrand))
-      system(paste0(VSEARCH, " --derep_prefix ", aggregate_contigs_onestrand , " --output ", derep_file_agg, " --sizeout --sizeorder --fasta_width 0"))
+      system(paste0(VSEARCH, " --derep_prefix ", aggregate_contigs_onestrand , " --output ", derep_file_agg, " --sizeout --fasta_width 0"))
       num_supp_seq <- as.double(system(paste0("head -n2 ", derep_file_agg, " | grep \"^>\" | sed 's/.*size=//'"), intern=TRUE))
       if (num_supp_seq == 1) {
         system(paste0("head -n2 ", aggregate_contigs, " > ", most_freq_seq))
