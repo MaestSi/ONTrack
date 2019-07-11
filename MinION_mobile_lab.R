@@ -43,6 +43,14 @@ if (!exists("amplicon_length")) {
   amplicon_length <- 710
 }
 
+if (!exists("fixed_lenfil_flag")) {
+  fixed_lenfil_flag <- 0
+}
+
+if (!exists("lenfil_tol")) {
+  lenfil_tol <- 300
+}
+
 if (!exists("pair_strands_flag") || flowcell == "FLO-MIN106") {
   pair_strands_flag <- 0
 }
@@ -223,11 +231,13 @@ for (i in 1:length(demu_files)) {
     read_length <- ws
     cat(text = paste0("Mean read length (stdev) for sample BC", BC_val_curr, ": ", sprintf("%.0f", mean(ws)), " (", sprintf("%.0f", sd(ws)), ")"), file = logfile, sep = "\n", append = TRUE)
     cat(text = paste0("Mean read length (stdev) for sample BC", BC_val_curr, ": ", sprintf("%.0f", mean(ws)), " (", sprintf("%.0f", sd(ws)), ")"), sep = "\n")
-    #tol <- 100
-    #lb <- amplicon_length - tol
-    #ub <- amplicon_length + tol
-    lb <- mean(ws) - 2*sd(ws)
-    ub <- mean(ws) + 2*sd(ws)
+    if (fixed_lenfil_flag == 1) {
+      lb <- amplicon_length - lenfil_tol/2
+      ub <- amplicon_length + lenfil_tol
+    } else {
+      lb <- mean(ws) - 2*sd(ws)
+      ub <- mean(ws) + 2*sd(ws)
+    }
     ws_ok <- ws[intersect(which(ws > lb), which(ws < ub))]
     read_length_ok <- ws_ok
     cat(text = paste0("Now filtering out reads shorter than ", sprintf("%.0f", lb), " and longer than ", sprintf("%.0f", ub), " bp for sample BC", BC_val_curr), file = logfile, sep = "\n", append = TRUE)
