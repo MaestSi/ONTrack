@@ -24,7 +24,7 @@ do_subsampling_flag <- 0
 num_fast5_files <- 50000
 #BC_int are the barcodes used in the experiment
 #BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
-BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC09", "BC10", "BC11", "BC12")
+BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
 #barcode kits
 #barcode_kits <- c("EXP-NBD103", "EXP-NBD114", "EXP-PBC001", "EXP-PBC096", "SQK-16S024", "SQK-LWB001", "SQK-RAB201", "SQK-RBK001", "SQK-RBK004", "SQK-RLB001")
 barcode_kits <- c("EXP-PBC001")
