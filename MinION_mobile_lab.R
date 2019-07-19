@@ -233,7 +233,7 @@ for (i in 1:length(demu_files)) {
     cat(text = paste0("Mean read length (stdev) for sample BC", BC_val_curr, ": ", sprintf("%.0f", mean(ws)), " (", sprintf("%.0f", sd(ws)), ")"), sep = "\n")
     if (fixed_lenfil_flag == 1) {
       lb <- amplicon_length - lenfil_tol/2
-      ub <- amplicon_length + lenfil_tol
+      ub <- amplicon_length + lenfil_tol/2
     } else {
       lb <- mean(ws) - 2*sd(ws)
       ub <- mean(ws) + 2*sd(ws)
