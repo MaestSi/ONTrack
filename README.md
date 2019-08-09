@@ -181,7 +181,7 @@ Inputs:
 Outputs:
 * \<"sample_name"_error_rate_stats.txt\>: error rate statistics
 
-**Contaminants inspection analysis**
+## Contaminants inspection analysis
 
 When the mapping rate of all reads from a sample is not in the range 95%-100%, you might be interested either in spotting if there is a predominant contaminant, or in trying to rescue the consensus sequence of your sample, if based on Blast analysis you realize that the consensus sequence from the most abundant cluster is not from the sample that you were supposed to sequence.
 In these cases, you could try to retrieve the reads that don't map to your consensus sequence, and run the _ONTrack_ pipeline again just on those reads. Remember in these cases to set the _do_clustering_flag_ variable to 1 in the _config_MinION_mobile_lab.R_ file.
@@ -205,6 +205,25 @@ samtools view -f4 -b $SAMPLE_NAME"_reads_on_contig.bam" > "contaminants_analysis
 bedtools bamtofastq -i "contaminants_analysis/"$SAMPLE_NAME"_unmapped.bam" -fq "contaminants_analysis/"$SAMPLE_NAME".fastq"
 seqtk seq -A "contaminants_analysis/"$SAMPLE_NAME".fastq" > "contaminants_analysis/"$SAMPLE_NAME".fasta"
 ```
+
+## Meta-barcoding analysis (experimental)
+
+Although the ONTrack pipeline is not intended for analysing meta-barcoding samples, you might be interested in sorting out sequences coming from different bacterial species and running the ONTrack pipeline on the most abundant species separately.
+The **MetatONTrack.sh** script reproduces what the EPI2ME 16S workflow does, blasting each read against the 16S Bacterial NCBI database, and afterwards saving sets of reads matching the different species to separate files. You can then run the **ONTrack.R** script on them, for obtaining a more accurate consensus sequence (set _do_clustering_flag_ to 0 in _config_MinION_mobile_lab.R_). This feature is experimental, and has not been thoroughly tested.
+
+**MetatONTrack.sh**
+
+Usage: MetatONTrack.sh \<fastq reads\> \<min num reads\>
+
+Note: set _BLASTN_, _SEQTK_ and _DB_ variables to blastn, seqtk executables and the 16S NCBI Bacterial Blast-indexed database respectively inside the script
+
+Inputs:
+* \<fastq reads\>:  MinION fastq reads from a meta-barcoding experiment
+* \<min num reads\>: minumum number of reads supporting the identification of a species (it should be > 1% of total reads) 
+
+Outputs:
+* \<MetatONTrack_output\>: directory containing fastq and fasta files for running the **ONTrack.R** script
+* \<MetatONTrack_output_logs\>: directory containing txt files storing read IDs corresponding to each species, a "sample_name"\_Blast_species_counts.txt file storing the number of reads supporting each species and some other temporary files
 
 ## Citation
 
