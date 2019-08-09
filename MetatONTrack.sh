@@ -43,6 +43,7 @@ $BLASTN -db $DB -query $WORKING_DIR"/"$SAMPLE_NAME".fasta" -num_threads $THREADS
 > $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_taxa_counts.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | cut -d" " -f2,3 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_species_counts.txt"
+cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | cut -d" " -f2 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_genera_counts.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_Blast_species_counts.txt" | awk -v var="$MIN_READS" '{if ($1 > var) {print $2" "$3}}' > $WORKING_DIR"/"$SAMPLE_NAME"_detected_species.txt"
 
 mkdir $OUTPUT_DIR
