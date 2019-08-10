@@ -40,7 +40,9 @@ LOGS_DIR=$WORKING_DIR"/MetatONTrack_output_logs"
 
 $SEQTK seq -A $FASTQ_READS_FULL > $WORKING_DIR"/"$SAMPLE_NAME".fasta"
 $BLASTN -db $DB -query $WORKING_DIR"/"$SAMPLE_NAME".fasta" -num_threads $THREADS -outfmt "6 qseqid evalue salltitles" -max_target_seqs 1 -perc_identity 0.77 -qcov_hsp_perc 0.3 \
-> $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt"
+> $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits_tmp.txt"
+cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits_tmp.txt" | sort -u -k1,1 -s > $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt"
+rm $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits_tmp.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_taxa_counts.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | cut -d" " -f2,3 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_species_counts.txt"
 cat $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" | cut -f3 | cut -d" " -f2 | sort | uniq -c | sort -nr > $WORKING_DIR"/"$SAMPLE_NAME"_Blast_genera_counts.txt"
@@ -65,4 +67,9 @@ do
   $SEQTK seq -A $OUTPUT_DIR"/BC"$COUNTER_TWODIG".fastq" > $OUTPUT_DIR"/BC"$COUNTER_TWODIG".fasta"
 done < $WORKING_DIR"/"$SAMPLE_NAME"_detected_species.txt"
 
-mv $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" $WORKING_DIR"/"$SAMPLE_NAME"_Blast_taxa_counts.txt" $WORKING_DIR"/"$SAMPLE_NAME"_Blast_species_counts.txt" $WORKING_DIR"/"$SAMPLE_NAME"_detected_species.txt" $LOGS_DIR
+mv $WORKING_DIR"/"$SAMPLE_NAME"_top_Blast_hits.txt" \
+$WORKING_DIR"/"$SAMPLE_NAME"_Blast_taxa_counts.txt" \
+$WORKING_DIR"/"$SAMPLE_NAME"_Blast_genera_counts.txt" \
+$WORKING_DIR"/"$SAMPLE_NAME"_Blast_species_counts.txt" \
+$WORKING_DIR"/"$SAMPLE_NAME"_detected_species.txt" \
+$LOGS_DIR
