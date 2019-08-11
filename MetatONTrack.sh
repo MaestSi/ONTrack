@@ -28,7 +28,7 @@ FASTQ_READS_FULL=$(realpath $FASTQ_READS)
 
 ######################################################################
 THREADS=8
-DB=/path/to/NCBI_Bacterial_16S.fasta #PRJNA33175
+DB=/path/to/NCBI_Blast-indexed_database #e.g. PRJNA33175 BioProject for Bacterial 16S
 BLASTN=/path/to/blastn
 SEQTK=/path/to/seqtk
 ######################################################################
