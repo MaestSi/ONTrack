@@ -208,14 +208,14 @@ seqtk seq -A "contaminants_analysis/"$SAMPLE_NAME".fastq" > "contaminants_analys
 
 ## Meta-barcoding analysis (experimental)
 
-Although the ONTrack pipeline is not intended for analysing meta-barcoding samples, you might be interested in sorting out sequences coming from different species and running the ONTrack pipeline on the most abundant species separately.
+Although the ONTrack pipeline is not intended for analysing meta-barcoding samples, you might be interested in sorting out sequences coming from different species and running the ONTrack pipeline on them separately.
 The **MetatONTrack.sh** script reproduces what the EPI2ME 16S workflow does, blasting each read against an NCBI-downloaded database (e.g. 16S Bacterial), and afterwards saving sets of reads matching the different species to separate files. You can then run the **ONTrack.R** script on them, for obtaining a more accurate consensus sequence (set _do_clustering_flag_ to 0 in _config_MinION_mobile_lab.R_). This feature is experimental, and has only been tested on a pool of 7 samples with 80% maximum sequence identity based on pairwise alignment of Sanger sequences.
 
 **MetatONTrack.sh**
 
 Usage: MetatONTrack.sh \<fastq reads\> \<min num reads\>
 
-Note: set _BLASTN_, _SEQTK_ and _DB_ variables to blastn, seqtk executables and to an NCBI Blast-indexed database respectively inside the script
+Note: set _BLASTN_, _SEQTK_ and _DB_ variables to blastn, seqtk executables and to an NCBI Blast-indexed database respectively inside the script; if using NCBI nt database, change _cut -d" " -f2,3_ (line 47) and _cut -d" " -f2_ (line 48) to _cut -d" " -f1,2_ and _cut -d" " -f1_ respectively
 
 Inputs:
 * \<fastq reads\>:  MinION fastq reads from a meta-barcoding experiment
@@ -223,7 +223,7 @@ Inputs:
 
 Outputs:
 * \<MetatONTrack_output\>: directory containing fastq and fasta files for running the **ONTrack.R** script
-* \<MetatONTrack_output_logs\>: directory containing txt files storing read IDs corresponding to each species, a "sample_name"\_Blast_species_counts.txt file storing the number of reads supporting each species and some other temporary files
+* \<MetatONTrack_output_logs\>: directory containing txt files storing read IDs corresponding to each species, a "sample_name"\_Blast_species_counts.txt file storing the number of reads supporting each species, "sample_name"\_Blast_genera_counts.txt file storing the number of reads supporting each genus and some other temporary files
 
 ## Citation
 
