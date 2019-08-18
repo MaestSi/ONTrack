@@ -209,7 +209,7 @@ seqtk seq -A "contaminants_analysis/"$SAMPLE_NAME".fastq" > "contaminants_analys
 ## Meta-barcoding analysis (experimental)
 
 Although the ONTrack pipeline is not intended for analysing meta-barcoding samples, you might be interested in sorting out sequences coming from different species and running the ONTrack pipeline on the most abundant species separately.
-The **MetatONTrack.sh** script reproduces what the EPI2ME 16S workflow does, blasting each read against an NCBI-downloaded database (e.g. 16S Bacterial), and afterwards saving sets of reads matching the different species to separate files. You can then run the **ONTrack.R** script on them, for obtaining a more accurate consensus sequence (set _do_clustering_flag_ to 0 in _config_MinION_mobile_lab.R_). This feature is experimental, and has only been tested on a pool of 7 samples.
+The **MetatONTrack.sh** script reproduces what the EPI2ME 16S workflow does, blasting each read against an NCBI-downloaded database (e.g. 16S Bacterial), and afterwards saving sets of reads matching the different species to separate files. You can then run the **ONTrack.R** script on them, for obtaining a more accurate consensus sequence (set _do_clustering_flag_ to 0 in _config_MinION_mobile_lab.R_). This feature is experimental, and has only been tested on a pool of 7 samples with 80% maximum sequence identity based on pairwise alignment of Sanger sequences.
 
 **MetatONTrack.sh**
 
@@ -219,7 +219,7 @@ Note: set _BLASTN_, _SEQTK_ and _DB_ variables to blastn, seqtk executables and 
 
 Inputs:
 * \<fastq reads\>:  MinION fastq reads from a meta-barcoding experiment
-* \<min num reads\>: minumum number of reads supporting the identification of a species (it should be > 1% of total reads) 
+* \<min num reads\>: minumum number of reads supporting the identification of a species 
 
 Outputs:
 * \<MetatONTrack_output\>: directory containing fastq and fasta files for running the **ONTrack.R** script
