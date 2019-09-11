@@ -229,7 +229,7 @@ for (i in 1:length(demu_files)) {
     cat(text = paste0("Now trimming adapters with Porechop for sample BC", BC_val_curr), sep = "\n")
     if (disable_porechop_demu_flag == 1) {
       system(paste0("mkdir ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp"))
-      system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -o ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp/BC", BC_val_curr, ".fastq  --extra_end_trim ", primers_length))
+      system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -o ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp/BC", BC_val_curr, ".fastq"))
     } else {
       system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -b ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp --require_two_barcodes"))
     }
