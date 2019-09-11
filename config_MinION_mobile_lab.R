@@ -42,12 +42,14 @@ save_space_flag <- 0
 num_threads <- 30
 #set a mean amplicon length [bp]
 amplicon_length <- 700
-#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 0 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
-fixed_lenfil_flag <- 1
+#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 1 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
+fixed_lenfil_flag <- 0
 #if fixed_lenfil_flag <- 1, lenfil_tol [bp] is the size of the window centered in amplicon_length for reads to be kept
 lenfil_tol <- 300
 #set primers length [bp]
 primers_length <- 25
+#if disable_porechop_demu_flag <- 1 porechop is only used for adapters trimming and not for doing a second round of demultiplexing; otherwise set disable_porechop_demu_flag <- 0
+disable_porechop_demu_flag <- 0
 #do_blast_flag <- 1 if you want to perform blast analysis of consensus sequences; otherwise set do_blast_flag <- 0
 do_blast_flag <- 1
 #do_clustering_flag <- 1 if you want to perform preliminary clustering for getting rid of contaminants; otherwise set do_clustering_flag <- 0
