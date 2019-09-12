@@ -42,7 +42,7 @@ save_space_flag <- 0
 num_threads <- 30
 #set a mean amplicon length [bp]
 amplicon_length <- 700
-#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 1 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
+#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 0 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
 fixed_lenfil_flag <- 0
 #if fixed_lenfil_flag <- 1, lenfil_tol [bp] is the size of the window centered in amplicon_length for reads to be kept
 lenfil_tol <- 300
