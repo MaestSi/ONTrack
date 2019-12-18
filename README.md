@@ -144,7 +144,7 @@ Note: script run by _ONTrack.R_ for clustering reads at 70% identity and keeping
 
 Usage: Sanger_check.sh \<consensus dir\> \<sanger dir\>
 
-Note: set _BLASTN_ variable to blastn executable inside the script; sample name should contain the sample id (e.g. BC01)
+Note: Activate the virtual environment with ```source activate ONTrack_env``` before running; sample name should contain the sample id (e.g. BC01)
 
 Inputs:
 * \<consensus dir\>: directory containing files "sample_name".contigs.fasta obtained with the _ONTrack_ pipeline
@@ -158,7 +158,7 @@ Output (saved in \<contigs dir\>):
 
 Usage: Calculate_mapping_rate.sh \<reads\> \<draft reads\> \<consensus sequence\>
 
-Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executables inside the script
+Note: Activate the virtual environment with ```source activate ONTrack_env``` before running.
 
 Inputs:
 * \<reads\>: MinION reads in fastq or fasta format
@@ -172,7 +172,7 @@ Output (saved in current directory):
 
 Usage: Calculate_error_rate.sh \<reads\> \<reference\>
 
-Note: set _MINIMAP2_ and _SAMTOOLS_ variables to minimap2 and samtools executables inside the script
+Note: Activate the virtual environment with ```source activate ONTrack_env``` before running.
 
 Inputs:
 * \<reads\>:  MinION reads in fastq or fasta format
