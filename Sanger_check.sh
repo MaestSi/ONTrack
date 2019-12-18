@@ -21,7 +21,7 @@
 CONTIGS_DIR=$1
 SANGER_DIR=$2
 
-BLASTN=blastn #specify full path if you want to use a version of the program which is not in your PATH
+BLASTN=blastn #specify full path if you want to use a version of the program that is not in your PATH
 
 contigs_files=$(find $CONTIGS_DIR -maxdepth 1 | grep "\\.contigs\\.fasta")
 sanger_files=$(find $SANGER_DIR -maxdepth 1 | grep "reference.*\\.fasta")
