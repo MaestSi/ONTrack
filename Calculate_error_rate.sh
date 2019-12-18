@@ -19,8 +19,8 @@
 READS=$1
 REFERENCE=$2
 
-MINIMAP2=minimap2 #specify full path if you want to use a version of the program which is not in your PATH
-SAMTOOLS=samtools #specify full path if you want to use a version of the program which is not in your PATH
+MINIMAP2=minimap2 #specify full path if you want to use a version of the program that is not in your PATH
+SAMTOOLS=samtools #specify full path if you want to use a version of the program that is not in your PATH
 
 SAMPLE_NAME=$(echo $(basename $READS) | sed 's/\.fast.//g')
 WORKING_DIR=$(dirname $(realpath $READS))
