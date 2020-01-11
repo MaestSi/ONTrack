@@ -222,6 +222,7 @@ if (pair_strands_flag == 1) {
   system(paste0(PYCOQC, " -f ", d2_basecalling, "/sequencing_summary.txt -b ", d2_preprocessing, "/barcoding_summary.txt -o ", d2, "/qc/pycoQC_report.html"))
 }
 demu_files <- list.files(path = d2_preprocessing, pattern = "BC", full.names = TRUE)
+
 for (i in 1:length(demu_files)) {
   BC_val_curr <- substr(x = basename(demu_files[i]), start = 3, stop = 4)
   if (paste0("BC", BC_val_curr) %in% BC_int) {
@@ -229,7 +230,7 @@ for (i in 1:length(demu_files)) {
     cat(text = paste0("Now trimming adapters with Porechop for sample BC", BC_val_curr), sep = "\n")
     if (disable_porechop_demu_flag == 1) {
       system(paste0("mkdir ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp"))
-      system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -o ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp/BC", BC_val_curr, ".fastq"))
+      system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -o ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp/BC", BC_val_curr, ".fastq  --extra_end_trim ", primers_length))
     } else {
       system(paste0(PORECHOP, " -i ", d2_preprocessing, "/BC", BC_val_curr, "_tmp1.fastq -b ", d2_preprocessing, "/BC", BC_val_curr, "_porechop_dir_tmp --require_two_barcodes"))
     }
@@ -267,7 +268,7 @@ for (i in 1:length(demu_files)) {
       system(paste0("rm ", d3, "/BC", BC_val_curr, ".fastq"))
       system(paste0("rm ", d3, "/BC", BC_val_curr, ".fasta"))
       next
-    }
+    } 
     cat(text = paste0("Mean read length for sample BC", BC_val_curr, " after filtering: ", sprintf("%.0f", mean(ws_ok)), " (", sprintf("%.0f", sd(ws_ok)), ")"), file = logfile, sep = "\n", append = TRUE)
     cat(text = paste0("Mean read length for sample BC", BC_val_curr, " after filtering: ", sprintf("%.0f", mean(ws_ok)), " (", sprintf("%.0f", sd(ws_ok)), ")"), sep = "\n")
     png(paste0(d2, "/qc/hist_BC", BC_val_curr, "_unfiltered.png"))

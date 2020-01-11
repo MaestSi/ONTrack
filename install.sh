@@ -19,12 +19,11 @@
 #
 
 PIPELINE_DIR=$(realpath $( dirname "${BASH_SOURCE[0]}" ))
-MINICONDA_DIR=$(which conda | sed 's/miniconda3.*$/miniconda3/')
+MINICONDA_DIR=$(which conda | sed 's/bin.*$//')
 conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --add channels r
-conda config --add channels anaconda
-conda create -n ONTrack_env python=3.6 blast emboss vsearch seqtk mafft porechop minimap2 samtools nanopolish bedtools r bioconductor-biostrings 
+conda create -n ONTrack_env python=3.6 blast emboss vsearch seqtk mafft porechop minimap2 samtools nanopolish r bioconductor-biostrings 
 source activate ONTrack_env
 pip install pycoQC
 echo -e "\n"

@@ -21,7 +21,7 @@
 #if do_subsampling_flag <- 1, subsampling of num_fast5_files fast5 files is performed; otherwise set do_subsampling_flag <- 0
 do_subsampling_flag <- 0
 #num_fast5_files is the number of fast5 files to be subsampled/analysed (if do_subsampling_flag <- 1)                          
-num_fast5_files <- 25
+num_fast5_files <- 50000
 #BC_int are the barcodes used in the experiment
 #BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
 BC_int <- c("BC01", "BC02", "BC03", "BC04", "BC05", "BC06", "BC07", "BC08", "BC09", "BC10", "BC11", "BC12")
@@ -41,8 +41,8 @@ save_space_flag <- 0
 #set the maximum number of threads to be used
 num_threads <- 30
 #set a mean amplicon length [bp]
-amplicon_length <- 700
-#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 0 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
+amplicon_length <- 710
+#fixed_lenfil_flag <- 1 if you want to keep reads in the range [amplicon_length - lenfil_tol/2; amplicon_length + lenfil_tol/2]; otherwise set fixed_lenfil_flag <- 1 if you want to keep reads in the range [mean_length -2*sd; mean_length + 2*sd] where mean_length and sd are evaluated on a sample basis
 fixed_lenfil_flag <- 0
 #if fixed_lenfil_flag <- 1, lenfil_tol [bp] is the size of the window centered in amplicon_length for reads to be kept
 lenfil_tol <- 300
