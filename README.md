@@ -23,7 +23,7 @@ chmod 755 Miniconda3-latest-Linux-x86_64.sh
 
 Then, after completing _ONTrack_ installation, set the _MINICONDA_DIR_ variable in **config_MinION_mobile_lab.R** to the full path to miniconda3 directory.
 
-* Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3 (ONTrack-v1.0), Guppy v3.0 (ONTrack-v1.1) and Guppy v3.4.
+* Guppy, the software for basecalling and demultiplexing provided by ONT. Tested with Guppy v2.3 (ONTrack-v1.0), Guppy v3.0 (ONTrack-v1.1) and Guppy v3.5.
 If you don't have [Guppy](https://community.nanoporetech.com/downloads) installed, choose an appropriate version and install it.
 For example, you could download and unpack the archive with:
 ```
