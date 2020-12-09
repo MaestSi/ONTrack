@@ -248,13 +248,13 @@ for (i in 1:length(fasta_files)) {
   if (do_blast_flag ==1 ) {
     cat(text = paste0("BLASTing consensus for sample ", sample_name, " and saving results to ", basename(blast_results)), sep = "\n")
     if (ONtoBAR_compatibility != 1) {
-      system(paste0(BLASTN, " -db ", NTDB, " -query ", final_contig, " > ", blast_results))
+      system(paste0(BLASTN, " -num_threads ", num_threads, " -db ", NTDB, " -query ", final_contig, " > ", blast_results))
     } else {
       blast_results_alt_sort <- paste0(sample_dir, "/", sample_name, "_sorted_by_perc_id.blastn.txt")
       blast_results_raw <- paste0(sample_dir, "/", sample_name, ".blastn_output.txt")
       system(paste0(BLASTN, " -db ", NTDB, " -query ", final_contig, " > ", blast_results_raw))
       cat(text = paste0("BLASTing consensus for sample ", sample_name, " and saving results to ", basename(blast_results)), sep = "\n")
-      system(paste0(BLASTN, " -db ", NTDB, " -query ", final_contig, " > ", blast_results_raw))
+      system(paste0(BLASTN, " -num_threads ", num_threads, " -db ", NTDB, " -query ", final_contig, " > ", blast_results_raw))
       input_file <- file(blast_results_raw, open = "r")
       input <- readLines(input_file)
       close(input_file)
