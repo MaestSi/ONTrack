@@ -123,7 +123,13 @@ for (i in 1:length(fasta_files)) {
   num_reads_mac <- as.double(system(paste0("cat ", decont_fasta, " | grep \"^>\" | wc -l"), intern=TRUE))
   target_reads_contig <- 200
   target_reads_polishing <- 200
-    
+  
+  if (num_reads_mac < 3) {
+    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, "; skipping"), sep = "\n")
+    cat(text = paste0("WARNING: Only ", num_reads_mac, " reads available for sample ", sample_name, "; skipping"),  file = logfile, sep = "\n", append = TRUE)
+    next
+  }
+  
   if (num_reads_mac < target_reads_contig) {
     target_reads_contig <- num_reads_mac
     target_reads_polishing <- num_reads_mac
