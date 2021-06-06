@@ -48,24 +48,6 @@ mkdir $tmp_dir
 mv $wdir"/"$sample_id"_ids_mac.txt" $tmp_dir
 mv $wdir"/consensus_"$sample_id".fasta" $tmp_dir
 
-clusters_0=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"0")
-clusters_1=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"1")
-clusters_2=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"2")
-clusters_3=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"3")
-clusters_4=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"4")
-clusters_5=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"5")
-clusters_6=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"6")
-clusters_7=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"7")
-clusters_8=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"8")
-clusters_9=$(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn"9")
-
-mv $clusters_0 $tmp_dir
-mv $clusters_1 $tmp_dir
-mv $clusters_2 $tmp_dir
-mv $clusters_3 $tmp_dir
-mv $clusters_4 $tmp_dir
-mv $clusters_5 $tmp_dir
-mv $clusters_6 $tmp_dir
-mv $clusters_7 $tmp_dir
-mv $clusters_8 $tmp_dir
-mv $clusters_9 $tmp_dir
+for cluster in $(find $wdir -maxdepth 1 -mindepth 1 | grep $prefix_bn); do
+  mv $cluster $tmp_dir;
+done
