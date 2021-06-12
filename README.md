@@ -216,7 +216,7 @@ The **MetatONTrack.sh** script reproduces what the EPI2ME 16S workflow does, bla
 Usage: MetatONTrack.sh \<fastq reads\> \<min num reads\>
 
 Note: Activate the virtual environment with ```source activate ONTrack_env``` before running.
-Set _DB_ variable to an NCBI Blast-indexed database inside the script; if using NCBI nt database, change _cut -d" " -f2,3_ (line 47) and _cut -d" " -f2_ (line 48) to _cut -d" " -f1,2_ and _cut -d" " -f1_ respectively
+Set _DB_ variable to an NCBI Blast-indexed database inside the script.
 
 Inputs:
 * \<fastq reads\>:  MinION fastq reads from a meta-barcoding experiment
