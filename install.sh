@@ -21,9 +21,9 @@
 PIPELINE_DIR=$(realpath $( dirname "${BASH_SOURCE[0]}" ))
 MINICONDA_DIR=$(which conda | sed 's/bin.*$//')
 conda config --add channels bioconda
-conda config --add channels conda-forge
-conda config --add channels r
 conda config --add channels anaconda
+conda config --add channels r
+conda config --add channels conda-forge
 conda create -n ONTrack_env python blast emboss vsearch seqtk mafft minimap2 samtools nanopolish r bioconductor-biostrings bedtools ncurses
 source activate ONTrack_env
 pip install pycoQC
