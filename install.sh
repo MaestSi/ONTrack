@@ -24,7 +24,8 @@ conda config --add channels bioconda
 conda config --add channels anaconda
 conda config --add channels r
 conda config --add channels conda-forge
-conda create -n ONTrack_env python blast emboss vsearch seqtk mafft minimap2 samtools nanopolish r bioconductor-biostrings bedtools ncurses
+conda create -n ONTrack_env -c bioconda bioconductor-biostrings
+conda install -n ONTrack_env python blast emboss vsearch seqtk mafft minimap2 samtools=1.15 nanopolish bedtools ncurses
 source activate ONTrack_env
 pip install pycoQC
 echo -e "\n"
