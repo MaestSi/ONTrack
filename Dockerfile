@@ -35,7 +35,7 @@ conda config --add channels r && \
 conda config --add channels conda-forge
 RUN conda create -n ONTrack_env -c bioconda bioconductor-biostrings
 RUN conda install -n ONTrack_env python blast emboss vsearch seqtk mafft minimap2 samtools=1.15 nanopolish bedtools ncurses ont_vbz_hdf_plugin
-RUN export HDF5_PLUGIN_PATH=/opt/conda/envs/ONTrack_env/hdf5/lib/plugin
+ENV HDF5_PLUGIN_PATH=/opt/conda/envs/ONTrack_env/hdf5/lib/plugin
 RUN /opt/conda/envs/ONTrack_env/bin/pip install pycoQC
 
 WORKDIR /home/
