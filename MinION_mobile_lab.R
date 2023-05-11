@@ -184,9 +184,9 @@ cat(text = "\n")
 cat(text = paste0("Demultiplexing started at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing started at ", date()), sep = "\n")
 if (require_two_barcodes_flag == 1) {
-  system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing,  " --require_barcodes_both_ends --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\""))
+  system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing,  " --enable_trim_barcodes --require_barcodes_both_ends --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\""))
 } else {
-  system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing,  " --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\""))
+  system(paste0(demultiplexer, " -r -i ", d2_basecalling, " -t ", num_threads, " -s ", d2_preprocessing,  " --enable_trim_barcodes --barcode_kits \"", paste0(barcode_kits, collapse = " "), "\""))
 }
 cat(text = paste0("Demultiplexing finished at ", date()), file = logfile, sep = "\n", append = TRUE)
 cat(text = paste0("Demultiplexing finished at ", date()), sep = "\n")
