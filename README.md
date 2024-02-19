@@ -1,3 +1,4 @@
+*ONTrack is no longer mantained. Please use [ONTrack2](https://github.com/MaestSi/ONTrack2) pipeline instead.*
 
 # ONTrack
 
